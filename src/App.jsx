@@ -12,10 +12,10 @@ import Home from "./pages/Home/Home";
 import Upload from "./pages/Home/Upload";
 import Education from "./pages/Education/Education";
 import MyPage from "./pages/MyPage/MyPage";
-import Ask from "./pages/MyPage/Ask";
 import Order from "./pages/MyPage/Order";
 import SearchE from "./pages/Education/SearchE";
 import Search from "./pages/Home/Search";
+import Alarm from "./pages/Home/Alarm.jsx";
 
 function App() {
   return (
@@ -32,10 +32,10 @@ function App() {
           <Route path="/upload" element={<Upload />} />
           <Route path="/education" element={<Education />} />
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/ask" element={<Ask />} />
           <Route path="/order" element={<Order />} />
           <Route path="/education/search" element={<SearchE />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/alarm" element={<Alarm />} />
         </Routes>
       </div>
     </BrowserRouter>
