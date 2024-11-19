@@ -50,6 +50,7 @@ function Signup() {
       <C.Center>
         <C.PageSpace>
           <U.Wrapper>
+
             <U.FieldContainer $marginBottom="70px">
               <U.InputGroup>
                 <U.Input type="text" placeholder="아이디" value={userId} onChange={handleIdChange} />
@@ -115,6 +116,7 @@ function Signup() {
             <U.FieldContainer>
               <U.Button className="next">다음</U.Button>
             </U.FieldContainer>
+            
           </U.Wrapper>
         </C.PageSpace>
       </C.Center>
