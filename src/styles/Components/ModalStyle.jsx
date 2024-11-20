@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ModalOverlay = styled.div`
   position: fixed;
-  top: 0;
+  top: 5%;
   left: 0;
   width: 100%;
   height: 100%;
@@ -22,6 +22,7 @@ border: 1px solid #B2B2B2;
   padding: 20px;
   display: flex;
   flex-direction: column;
+    align-items: flex-center; 
 `;
 
 export const Button = styled.button`
@@ -37,4 +38,29 @@ export const ButtonRow = styled.div`
   display: flex;
   justify-content: space-around;
   margin-bottom: 10px;
+`;
+
+export const ButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center; 
+`;
+
+
+export const CButton = styled.button`
+  width: 344px;
+  height: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  background-color: #ee8814;
+  color: white;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #ffffff;
+    color: #ee8814;
+  }
 `;
