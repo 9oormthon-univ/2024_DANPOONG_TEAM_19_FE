@@ -21,7 +21,7 @@ function MyPage() {
             </M.DivisionLine>
           </M.Division>
           <M.Content>
-            <MyPageS></MyPageS>
+            <MyPageB></MyPageB>
           </M.Content>
         </C.PageSpace>
       </C.Center>
