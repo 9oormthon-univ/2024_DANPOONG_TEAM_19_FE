@@ -14,9 +14,9 @@ function Upload() {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const [images, setImages] = useState([]);
-  const [productName, setProductName] = useState("");
-  const [productDetails, setProductDetails] = useState("");
-  const [productPrice, setProductPrice] = useState("00,000원");
+  const [productName, setProductName] = useState('');
+  const [productDetails, setProductDetails] = useState('');
+  const [productPrice, setProductPrice] = useState('00,000원');
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleAddPhotoClick = () => {
@@ -32,31 +32,31 @@ function Upload() {
 
   const adjustTextAreaHeight = (event) => {
     const target = event.target;
-    target.style.height = "auto";
+    target.style.height = 'auto';
     const newHeight = Math.max(target.scrollHeight, 100);
     target.style.height = `${newHeight}px`;
   };
 
   const handlePriceClick = () => setModalOpen(true);
 
-  const handlePriceChange = (newPrice) => setProductPrice(newPrice);
+  const handlePriceChange = (newPrice) => setProductPrice(`${newPrice}원`);
 
   return (
     <U.Page>
       <U.Center>
-        <U.PageSpace>
-          <U.Wrapper>
+        <U.PageSpace modalOpen={modalOpen}>
+          <U.Wrapper modalOpen={modalOpen}>
             <U.Title>상품 등록</U.Title>
             <input
               type="file"
               multiple
               ref={fileInputRef}
               onChange={handleFileChange}
-              style={{ display: "none" }}
+              style={{ display: 'none' }}
             />
             <U.PhotoAddButton onClick={handleAddPhotoClick}>
               {images.length === 0 ? (
-                <span style={{ fontSize: "48px", color: "white" }}>+</span>
+                <span style={{ fontSize: '48px', color: 'white' }}>+</span>
               ) : (
                 <Swiper
                   spaceBetween={50}
@@ -64,21 +64,6 @@ function Upload() {
                   loop={true}
                   pagination={{
                     clickable: true,
-                    renderBullet: (index, className) => {
-                      return `<span class="${className}" style="
-                        width: 10px;
-                        height: 10px;
-                        margin: 0 5px;
-                        background-color: ${
-                          className.includes(
-                            "swiper-pagination-bullet-active"
-                          )
-                            ? "#EE8814"
-                            : "#EE8814"
-                        };
-                        border-radius: 50%;
-                        display: inline-block;"></span>`;
-                    },
                   }}
                   modules={[Pagination]}
                 >
@@ -88,9 +73,9 @@ function Upload() {
                         src={image}
                         alt={`Preview ${index}`}
                         style={{
-                          width: "321px",
-                          height: "321px",
-                          objectFit: "cover",
+                          width: '321px',
+                          height: '321px',
+                          objectFit: 'cover',
                         }}
                       />
                     </SwiperSlide>
@@ -99,9 +84,9 @@ function Upload() {
               )}
             </U.PhotoAddButton>
             <U.ProfileContainer>
-                <U.ProfileImage src={userProfile} alt="사용자 프로필" />
-                <U.UserName>김옥순</U.UserName>
-              </U.ProfileContainer>
+              <U.ProfileImage src={userProfile} alt="사용자 프로필" />
+              <U.UserName>김옥순</U.UserName>
+            </U.ProfileContainer>
             <U.Input
               value={productName}
               onChange={(e) => setProductName(e.target.value)}
@@ -118,10 +103,10 @@ function Upload() {
               placeholder="상품 상세 내용을 작성해주세요."
             />
             <U.ButtonRow>
-            <U.CancelButton onClick={() => navigate("/home")}>
+              <U.CancelButton onClick={() => navigate('/home')}>
                 취소
               </U.CancelButton>
-              <U.CompleteButton onClick={() => console.log("완료")}>
+              <U.CompleteButton onClick={() => console.log('완료')}>
                 완료
               </U.CompleteButton>
             </U.ButtonRow>

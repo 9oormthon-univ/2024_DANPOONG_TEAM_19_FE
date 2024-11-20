@@ -27,9 +27,10 @@ export const PageSpace = styled.div`
   align-items: flex-start;
   width: 100vw;
   min-height: 100vh;
-   height: 100%;
+  height: 100%;
+  transform: ${(props) => (props.modalOpen ? 'translateY(-50px)' : 'translateY(0)')};
+  transition: transform 0.3s ease-in-out;
 `;
-
 
 export const Wrapper = styled.div`
   display: flex;
@@ -39,8 +40,10 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   gap: 36px;
-  margin-top:15%;
+  margin-top: ${(props) => (props.modalOpen ? '10%' : '15%')};
+  transition: margin-top 0.3s ease-in-out;
 `;
+
 
 export const Title = styled.h1`
   font-size: 24px;
@@ -179,6 +182,8 @@ export const ProfileContainer = styled.div`
   align-items: center;
   gap: 10px;
   margin-right:50%;
+  margin-top:-6%;
+  margin-bottom:-3%;
 `;
 
 export const UserName = styled.div`
