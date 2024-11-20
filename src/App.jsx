@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import { requestDeviceToken } from "./utils/notification";
 
 import Splash from "./pages/Login/Splash";
 import FirstPage from "./pages/Login/FirstPage";
@@ -18,6 +19,11 @@ import Search from "./pages/Home/Search";
 import Alarm from "./pages/Home/Alarm.jsx";
 
 function App() {
+  // Device Token 요청
+  useEffect(() => {
+    requestDeviceToken();
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="App">
