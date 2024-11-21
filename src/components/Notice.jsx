@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as N from "../styles/Components/NoticeStyle";
 import More from "../assets/images/Common/more.png";
 import Test from "../assets/images/Common/test.png";
+import { useNavigate, Link } from "react-router-dom";
 
 const Notice = () => {
+  const [notice, setNotice] = useState([]);
+
+  const navigate = useNavigate();
+
+  const getNotice = async () => {};
+
+  useEffect(() => {
+    getNotice();
+  }, []);
+
   return (
     <N.List>
       <N.ListItem>
