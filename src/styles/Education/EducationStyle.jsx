@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  margin-left: 21px;
-  margin-top: 10px;
+  margin: 10px 0 0 21px;
 `;
 
 export const Btn = styled.button`
@@ -14,13 +13,18 @@ export const Btn = styled.button`
   height: 40px;
   border-radius: 20px;
   margin-right: 10px;
-  color: ${({ active }) => (active ? "#ffffff" : "#666666")};
-  background-color: ${({ active }) => (active ? "#ee8814" : "#ffffff")};
-  border: ${({ active }) => (active ? "none" : "0.5px solid #B2B2B2")};
+  font-size: 14px;
   cursor: pointer;
+  color: ${(props) => (props["data-active"] ? "#ffffff" : "#666666")};
+  background-color: ${(props) => (props["data-active"] ? "#ee8814" : "#ffffff")};
+  border: ${(props) => (props["data-active"] ? "none" : "1px solid #B2B2B2")};
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
 
   &:hover {
-    opacity: 0.8; /* Hover 효과 */
+    opacity: 0.8;
+  }
+  &:focus {
+    outline: none;
   }
 `;
 
