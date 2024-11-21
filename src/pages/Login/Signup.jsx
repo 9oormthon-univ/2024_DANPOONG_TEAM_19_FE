@@ -70,7 +70,7 @@ function Signup() {
               </U.InputGroup>
             </U.FieldContainer>
 
-            <U.FieldContainer $marginBottom="50px">
+            <U.FieldContainer $marginBottom="2%">
               <U.InputGroup>
                 <U.Input
                   type="password"
