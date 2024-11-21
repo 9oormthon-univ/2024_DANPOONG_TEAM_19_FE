@@ -110,10 +110,10 @@ export const Price = styled.span`
 `;
 
 export const UploadButton = styled.img`
-  position: fixed; // 고정 위치
-  right: 5%; // 오른쪽에서 20px
-  bottom: 12%; // 하단에서 80px
-  width: 50px; // 너비 50px
-  height: 50px; // 높이 50px
-  cursor: pointer; // 클릭 가능한 커서 스타일
+  position: fixed; 
+  right: 5%; 
+  bottom: 15%; 
+  width: 50px; 
+  height: 50px; 
+  cursor: pointer; 
 `;
