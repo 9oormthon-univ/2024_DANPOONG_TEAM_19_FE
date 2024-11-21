@@ -41,8 +41,8 @@ export const GridContainer = styled.div`
 `;
 
 export const Box = styled.div`
-  width: 180px;
-  height: 247px;
+  width: 170px;
+  height: 240px;
   background: #FFFFFF;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   border-radius: 8px;
@@ -67,7 +67,7 @@ export const TopRow = styled.div`
   justify-content: space-between; 
   align-items: center; 
   width: 100%; 
-  font-size: 14px;
+  font-size: 1px;
 `;
 
 export const NameAndUploader = styled.span`
