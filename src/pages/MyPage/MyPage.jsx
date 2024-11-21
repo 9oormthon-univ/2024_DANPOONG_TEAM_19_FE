@@ -3,7 +3,7 @@ import * as C from "../../styles/CommonStyle";
 import * as M from "../../styles/MyPage/MyPageStyle";
 import MyPageB from "../../components/MyPageB";
 import MyPageS from "../../components/MyPageS";
-import ProfileImage from "../../assets/images/MyPage/profile.png";
+import ProfileImage from "../../assets/images/Mypage/profile.png";
 
 function MyPage() {
   return (
