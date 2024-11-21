@@ -32,7 +32,13 @@ export const Button = styled.button`
   background: none;
   border: none;
   outline: none;
+  background-image: ${(props) => props.isBack && `url(${back})`}; 
+  background-size: contain; 
+  background-position: center;
+  background-repeat: no-repeat;
+  color: black; 
 `;
+
 
 export const ButtonRow = styled.div`
   display: flex;
