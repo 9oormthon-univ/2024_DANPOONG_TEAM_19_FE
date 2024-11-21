@@ -39,6 +39,11 @@ export const Button = styled.button`
   color: black; 
 `;
 
+export const Icon = styled.img`
+  width: 20px; 
+  height: 20px;
+  object-fit: contain;
+`;
 
 export const ButtonRow = styled.div`
   display: flex;

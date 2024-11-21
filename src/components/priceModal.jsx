@@ -59,15 +59,9 @@ const priceModal = ({ isOpen, onClose, onChange }) => {
             전체 삭제
           </M.Button>
           <M.Button onClick={() => handleButtonClick('0')}>0</M.Button>
-          <M.Button
-            onClick={handleDelete}
-            style={{
-              backgroundImage: `url(${back})`,
-              backgroundSize: '20%',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-            }}
-          />
+          <M.Button onClick={handleDelete}>
+    <M.Icon src={back} alt="뒤로가기" />
+  </M.Button>
         </M.ButtonRow>
         <M.ButtonWrapper>
           <M.CButton className="next" onClick={onClose}>
