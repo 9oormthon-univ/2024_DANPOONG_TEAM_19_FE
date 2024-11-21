@@ -22,8 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-<<<<<<< HEAD
 .env
+<<<<<<< HEAD
 =======
 .env
 >>>>>>> 071f6ea (✨Feat: 환경변수 설정)
+=======
+
+>>>>>>> 037d148 (✨Feat: 환경변수 설정)

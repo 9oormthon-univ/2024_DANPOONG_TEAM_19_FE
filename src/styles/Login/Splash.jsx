@@ -7,6 +7,7 @@ export const ImageContainer = styled.div`
   width: width: 100vw;
   height: 100dvh;
 `;
+
 export const Image = styled.img`
   width:100vw;
   height:100dvh;
