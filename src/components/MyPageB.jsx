@@ -3,7 +3,7 @@ import axios from "axios";
 
 import * as MB from "../styles/Components/MyPageBStyle";
 
-import Plus from "../assets/images/MyPage/plus.png";
+import Plus from "../assets/images/Mypage/plus.png";
 import ModalProgressB from "../components/ModalProgressB";
 
 function MypageB() {
