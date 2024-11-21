@@ -101,7 +101,7 @@ function Signup() {
               </U.InputGroup>
             </U.FieldContainer>
 
-            <U.FieldContainer $align="center" $marginBottom="0%">
+            <U.FieldContainer $align="center" $marginBottom="-8%">
               <U.RoleButtonGroup>
                 <U.RoleButton className={role === "seller" ? "selected" : ""} onClick={() => handleRoleClick("seller")}>
                   판매자
