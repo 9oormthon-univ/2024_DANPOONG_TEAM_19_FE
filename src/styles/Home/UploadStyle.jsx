@@ -100,6 +100,7 @@ export const Input = styled.input`
   border: 1px solid #B2B2B2;
   height: 70px;
   font-size: 18px;
+  background-color: #ffffff;
 `;
 
 export const PriceButton = styled.div`
@@ -126,6 +127,7 @@ export const TextArea = styled.textarea`
  letter-spacing: -2px;
  font-size: 18px;
  overflow-y: hidden;
+ background-color: #ffffff;
 `;
 
 export const CancelButton = styled.button`
