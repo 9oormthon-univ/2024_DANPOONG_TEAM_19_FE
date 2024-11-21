@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as C from "../../styles/CommonStyle";
 import * as S from "../../styles/Login/SplashStyle";
-import Loading from "../../assets/images/Login/Loading.png";
+import Loading from "../../assets/images/Login/loading.png";
 
 function Splash() {
   const navigate = useNavigate();
