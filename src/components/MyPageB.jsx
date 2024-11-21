@@ -6,6 +6,8 @@ import * as MB from "../styles/Components/MyPageBStyle";
 import Plus from "../assets/images/Mypage/plus.png";
 import ModalProgressB from "../components/ModalProgressB";
 
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 function MypageB() {
   const [items, setItems] = useState([]);
   const [selectedPurchaseId, setSelectedPurchaseId] = useState(null);
@@ -27,7 +29,8 @@ function MypageB() {
 
   const getItems = async () => {
     try {
-      const response = await API.get("/mypage/allproduct");
+      const url = `${API_KEY}/mypage/allproduct`;
+      const response = await axios.get(url);
       setItems(response.data);
       console.log(response.data);
     } catch (error) {
