@@ -50,7 +50,7 @@ function Signup() {
       <C.Center>
         <C.PageSpace>
           <U.Wrapper>
-            <U.FieldContainer $marginBottom="70px">
+            <U.FieldContainer $marginBottom="0%">
               <U.InputGroup>
                 <U.Input type="text" placeholder="아이디" value={userId} onChange={handleIdChange} />
                 <U.DuplicateButton>중복확인</U.DuplicateButton>
@@ -64,7 +64,7 @@ function Signup() {
               </U.Message>
             </U.FieldContainer>
 
-            <U.FieldContainer $marginBottom="px">
+            <U.FieldContainer $marginTop="0%">
               <U.InputGroup>
                 <U.Input type="password" placeholder="비밀번호" value={password} onChange={handlePasswordChange} />
               </U.InputGroup>

@@ -46,7 +46,7 @@ export const DuplicateButton = styled.button`
   background-color: #ee8814;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
 
   &:hover {
