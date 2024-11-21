@@ -6,11 +6,6 @@ import * as MB from "../styles/Components/MyPageBStyle";
 import Plus from "../assets/images/MyPage/plus.png";
 import ModalProgressB from "../components/ModalProgressB";
 
-const API = axios.create({
-  baseURL: "http://43.200.2.187:8080", // 서버 주소 및 포트 번호
-  timeout: 5000, // 5초 타임아웃 설정
-});
-
 function MypageB() {
   const [items, setItems] = useState([]);
   const [selectedPurchaseId, setSelectedPurchaseId] = useState(null);
