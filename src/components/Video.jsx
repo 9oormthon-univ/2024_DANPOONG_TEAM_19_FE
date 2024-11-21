@@ -13,6 +13,7 @@ const Video = () => {
     try {
       const url = `${API_KEY}/kakao/search`;
       const response = await axios.get(url);
+      console.log(url);
       setItems(response.data.documents);
     } catch (error) {
       console.error("데이터를 불러오는 중 오류가 발생했습니다:", error);
@@ -30,7 +31,7 @@ const Video = () => {
   return (
     <V.List>
       {items.map((item) => (
-        <V.ListItem key={item.id} onClick={() => handleItemClick(item.url)}>
+        <V.ListItem key={item.id} onClick={() => handleVideo(item.url)}>
           <V.ListImg src={item.thumbnail} alt="미리보기"></V.ListImg>
           <V.ListText>
             <V.ListTitle>{item.title}</V.ListTitle>
