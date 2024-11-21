@@ -12,7 +12,7 @@ export const FooterContainer = styled.footer`
   background-color: #ffffff;
   border-radius: 30px 30px 0 0;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 998;
   height: 80px;
 `;
 
