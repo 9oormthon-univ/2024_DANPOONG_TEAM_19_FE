@@ -92,7 +92,7 @@ export const Button = styled.button`
 `;
 
 export const DescriptionBox = styled.div`
-  width: 353px;
+  width: 330px;
   min-height: 200px;
   border-radius: 20px;
   padding: 16px;
@@ -158,7 +158,7 @@ export const DescriptionText = styled.div`
 `;
 
 export const CommentBox = styled.div`
-  width: 353px;
+  width: 330px;
   border-radius: 20px;
   padding: 16px;
   display: flex;
@@ -238,7 +238,7 @@ export const ReplyBox = styled.div`
 `;
 
 export const CommentInputBox = styled.div`
-  width: 353px;
+  width: 330px;
   border-radius: 20px;
   padding: 16px;
   display: flex;
