@@ -3,7 +3,7 @@ import * as C from "../../styles/CommonStyle";
 import * as M from "../../styles/MyPage/MyPageStyle";
 import MyPageB from "../../components/MyPageB";
 import MyPageS from "../../components/MyPageS";
-import Profile from "../../assets/images/MyPage/profile.png";
+import ProfileImage from "../../assets/images/MyPage/profile.png";
 
 function MyPage() {
   return (
@@ -11,7 +11,7 @@ function MyPage() {
       <C.Center>
         <C.PageSpace>
           <M.Profile>
-            <M.ProfileImg src={Profile} alt="Profile"></M.ProfileImg>
+            <M.ProfileImg src={ProfileImage} alt="Profile"></M.ProfileImg>
             <M.ProfileText>Test</M.ProfileText>
           </M.Profile>
           <M.Division>
