@@ -16,15 +16,15 @@ function Splash() {
   }, [navigate]);
 
   return (
-    <C.Page>
-      <C.Center>
-        <C.PageSpace>
+    <S.Page>
+      <S.Center>
+        <S.PageSpace>
           <S.ImageContainer>
             <S.Image src={Loading} alt="Loading" />
           </S.ImageContainer>
-        </C.PageSpace>
-      </C.Center>
-    </C.Page>
+        </S.PageSpace>
+      </S.Center>
+    </S.Page>
   );
 }
 
