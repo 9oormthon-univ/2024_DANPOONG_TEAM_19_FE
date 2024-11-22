@@ -3,6 +3,7 @@ import * as C from "../../styles/CommonStyle";
 import * as E from "../../styles/Education/EducationStyle";
 import Notice from "../../components/Notice";
 import Video from "../../components/Video";
+import Header from "../../components/Header";
 
 function Education() {
   const [activeButton, setActiveButton] = useState("video");
@@ -11,6 +12,7 @@ function Education() {
     <C.Page>
       <C.Center>
         <C.PageSpace>
+          <Header />
           <E.Container>
             <E.Btn data-active={activeButton === "video"} onClick={() => setActiveButton("video")}>
               영상

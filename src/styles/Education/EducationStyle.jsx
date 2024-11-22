@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  margin: 10px 0 0 21px;
+  margin: 100px 0 0 21px;
 `;
 
 export const Btn = styled.button`
