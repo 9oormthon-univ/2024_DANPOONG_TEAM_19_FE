@@ -1,25 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import * as C from '../../styles/CommonStyle';
-import * as H from '../../styles/Home/HomeStyle';
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
-import SearchHeader from '../../components/searchHeader';
-import image from '../../assets/images/Home/image1.png';
-import Upload from '../../assets/images/Home/upload.svg';
-import Back from "../../components/back";
+import React from "react";
+import { Link } from "react-router-dom";
+import * as C from "../../styles/CommonStyle";
+import * as H from "../../styles/Home/HomeStyle";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import useAllProducts from "../../hooks/Home/useAllProducts"; // 생성한 Hook 가져오기
 
 function Home() {
-  const items = [
-    { id: 1, image: image, name: '하트 키링', uploader: '김옥순', price: '12,000원' },
-    { id: 2, image: image, name: '하트 키링', uploader: '김옥순', price: '12,000원' },
-    { id: 3, image: image, name: '하트 키링', uploader: '김옥순', price: '12,000원' },
-    { id: 4, image: image, name: '하트 키링', uploader: '김옥순', price: '12,000원' },
-    { id: 5, image: image, name: '하트 키링', uploader: '김옥순', price: '12,000원' },
-    { id: 6, image: image, name: '하트 키링', uploader: '김옥순', price: '12,000원' },
-    { id: 7, image: image, name: '하트 키링', uploader: '김옥순', price: '12,000원' },
-    { id: 8, image: image, name: '하트 키링', uploader: '김옥순', price: '12,000원' }
-  ];
+  const { products, loading, error } = useAllProducts(); // Hook에서 상태 가져오기
+
+  if (loading) return <p>로딩 중...</p>; // 로딩 상태 처리
+  if (error) return <p>에러 발생: {error}</p>; // 에러 상태 처리
 
   return (
     <H.Page>
@@ -27,18 +18,18 @@ function Home() {
       <H.Center>
         <H.PageSpace>
           <H.GridContainer>
-            {items.map(item => (
-              <Link to="/detail"> 
-                <H.Box key={item.id}>
-                  <H.Image src={item.image} alt={item.name} />
+            {products.map((product) => (
+              <Link to={`/detail/${product.productId}`} key={product.productId}> {/* productId로 링크 */}
+                <H.Box>
+                  <H.Image src={product.imgUrl} alt={product.title} />
                   <H.Description>
                     <H.TopRow>
-                      <H.Name>{item.name}</H.Name>
-                      <H.Uploader>{item.uploader}</H.Uploader>
+                      <H.Name>{product.title}</H.Name>
+                      <H.Uploader>{product.sellerName}</H.Uploader>
                       <H.MoreButton>⋮</H.MoreButton>
                     </H.TopRow>
                     <H.BottomRow>
-                      <H.Price>{item.price}</H.Price>
+                      <H.Price>{product.price.toLocaleString()}원</H.Price>
                     </H.BottomRow>
                   </H.Description>
                 </H.Box>
@@ -47,7 +38,7 @@ function Home() {
           </H.GridContainer>
         </H.PageSpace>
         <Link to="/upload">
-          <H.UploadButton src={Upload} alt="Upload" />
+          <H.UploadButton alt="Upload" />
         </Link>
         <Footer />
       </H.Center>
