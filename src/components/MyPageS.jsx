@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { axiosInstance } from "../axios/axios_instance";
 import * as MS from "../styles/Components/MyPageSStyle";
 import ModalDelete from "./ModalDelete";
 import ModalManagement from "./ModalManagement";
@@ -11,10 +12,11 @@ function MyPageS() {
   const [isModalVisibleM, setIsModalVisibleM] = useState(false);
 
   const [items, setItems] = useState([]);
+  const [selectedProductId, setSelectedProductId] = useState(null);
 
   const getItems = async () => {
     try {
-      const response = await API.get("/mypage/allproduct");
+      const response = await axiosInstance.get("/api/core/mypage/allproduct");
       setItems(response.data);
       console.log(response.data);
     } catch (error) {
@@ -37,6 +39,7 @@ function MyPageS() {
     }, 400);
   };
   const openModalM = () => {
+    setSelectedProductId(productId);
     setIsModalOpenM(true);
     setIsModalVisibleM(true);
   };
@@ -50,14 +53,20 @@ function MyPageS() {
   return (
     <MS.List>
       {items.map((item) => (
-        <MS.ListItem key={item.id}>
+        <MS.ListItem key={item.productId}>
           <MS.ListImg src={item.images?.[0]?.imageUrl}></MS.ListImg>
           <MS.ListText>
             <MS.ListTitle>{item.title}</MS.ListTitle>
-            <MS.ListMore src={More} onClick={openModalM}></MS.ListMore>
-            {isModalOpenM && <ModalManagement onClose={closeModalM} isModalVisibleM={isModalVisibleM} />}
+            <MS.ListMore src={More} onClick={() => openModalM(item.productId)}></MS.ListMore>
+            {isModalOpenM && (
+              <ModalManagement
+                onClose={closeModalM}
+                isModalVisibleM={isModalVisibleM}
+                productId={selectedProductId} // 선택된 상품 ID 전달
+              />
+            )}
           </MS.ListText>
-          <MS.LsitPrice>12,000원</MS.LsitPrice>
+          <MS.LsitPrice>{item.price.toLocaleString()}원</MS.LsitPrice>
           <MS.ListButton>
             <MS.Button onClick={openModalD}>삭제</MS.Button>
             {isModalOpenD && <ModalDelete onClose={closeModalD} isModalVisibleD={isModalVisibleD} />}
