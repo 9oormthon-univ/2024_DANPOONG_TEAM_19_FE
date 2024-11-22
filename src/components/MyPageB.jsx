@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import API from "../hooks/api";
-
+import { axiosInstance } from "../axios/axios_instance";
 import * as MB from "../styles/Components/MyPageBStyle";
 
 import Plus from "../assets/images/Mypage/plus.png";
@@ -27,7 +26,7 @@ function MypageB() {
 
   const getItems = async () => {
     try {
-      const response = await API.get("/mypage/allpurchase/consumer");
+      const response = await axiosInstance.get("/api/core/mypage/allpurchase/consumer");
       setItems(response.data);
       console.log(response.data);
     } catch (error) {

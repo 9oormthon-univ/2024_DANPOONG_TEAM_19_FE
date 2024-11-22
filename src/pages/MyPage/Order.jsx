@@ -4,6 +4,7 @@ import * as O from "../../styles/MyPage/OrderStyle";
 import Plus from "../../assets/images/Mypage/plus.png";
 import Test from "../../assets/images/Common/test.png";
 import Back from "../../components/back";
+import Footer from "../../components/Footer";
 
 function Order() {
   const [isModalOpenP, setIsModalOpenP] = useState(false);
@@ -45,6 +46,7 @@ function Order() {
               </O.ListContent>
             </O.ListItem>
           </O.List>
+          <Footer />
         </C.PageSpace>
       </C.Center>
     </C.Page>
