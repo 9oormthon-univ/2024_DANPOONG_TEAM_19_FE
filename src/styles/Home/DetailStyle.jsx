@@ -157,17 +157,20 @@ export const DescriptionText = styled.div`
   text-overflow: ellipsis;
 `;
 
-export const CommentBox = styled.div`
+export const CommentBox = styled.div.attrs((props) => ({
+  highlighted: props.isHighlighted, // DOM에 직접 전달되지 않도록 변경
+}))`
   width: 330px;
   border-radius: 20px;
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: ${({ isHighlighted }) => (isHighlighted ? "#FFEBD4" : "white")};
-  border: ${({ isHighlighted }) => (isHighlighted ? "none" : "1px solid #b2b2b2")};
+  background-color: ${({ highlighted }) => (highlighted ? "#FFEBD4" : "white")};
+  border: ${({ highlighted }) => (highlighted ? "none" : "1px solid #b2b2b2")};
   transition: background-color 0.3s ease, border 0.3s ease;
 `;
+
 
 
 export const CommentText = styled.div`
