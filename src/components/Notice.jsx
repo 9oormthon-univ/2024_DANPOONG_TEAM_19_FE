@@ -1,33 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import * as N from "../styles/Components/NoticeStyle";
 import More from "../assets/images/Common/more.png";
-import Test from "../assets/images/Common/test.png";
-import { useNavigate, Link } from "react-router-dom";
+import NoticeImg from "../assets/images/Mypage/notice.png";
 
 const Notice = () => {
-  const [notice, setNotice] = useState([]);
-
-  const navigate = useNavigate();
-
-  const getNotice = async () => {};
-
-  useEffect(() => {
-    getNotice();
-  }, []);
-
   return (
     <N.List>
       <N.ListItem>
-        <N.ListImg src={Test} alt="test"></N.ListImg>
+        <N.ListImg src={NoticeImg} alt="test"></N.ListImg>
         <N.ListText>
-          <N.ListTitle>Test</N.ListTitle>
+          <N.ListTitle>미화원 모집 [북구일자리지원센터 채용대행]</N.ListTitle>
           <N.ListMore src={More} alt="more"></N.ListMore>
         </N.ListText>
       </N.ListItem>
       <N.ListItem>
-        <N.ListImg src={Test} alt="test"></N.ListImg>
+        <N.ListImg src={NoticeImg} alt="test"></N.ListImg>
         <N.ListText>
-          <N.ListTitle>Test</N.ListTitle>
+          <N.ListTitle>[구평동] 특수경비원 모집</N.ListTitle>
+          <N.ListMore src={More} alt="more"></N.ListMore>
+        </N.ListText>
+      </N.ListItem>
+      <N.ListItem>
+        <N.ListImg src={NoticeImg} alt="test"></N.ListImg>
+        <N.ListText>
+          <N.ListTitle>지역사회서비스(아동 청소년비젼 형성, 글로벌마인드형성)제공</N.ListTitle>
+          <N.ListMore src={More} alt="more"></N.ListMore>
+        </N.ListText>
+      </N.ListItem>
+      <N.ListItem>
+        <N.ListImg src={NoticeImg} alt="test"></N.ListImg>
+        <N.ListText>
+          <N.ListTitle>[구평동] 특수경비원 모집</N.ListTitle>
           <N.ListMore src={More} alt="more"></N.ListMore>
         </N.ListText>
       </N.ListItem>
