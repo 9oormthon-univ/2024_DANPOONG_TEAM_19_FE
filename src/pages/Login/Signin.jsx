@@ -12,7 +12,9 @@ function Signin() {
   const { login, loading, error } = useLogin();
   const navigate = useNavigate(); // useNavigate 선언
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // 기본 폼 제출 방지
+
     if (!id || !password) {
       alert("아이디와 비밀번호를 입력해주세요.");
       return;
@@ -32,31 +34,35 @@ function Signin() {
       <Back />
       <C.Center>
         <C.PageSpace>
-          <I.Wrapper>
-            <I.Image src={Anyone} alt="Anyone" />
-            <I.InputContainer>
-              <I.Input
-                type="text"
-                placeholder="아이디"
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-              />
-              <I.Input
-                type="password"
-                placeholder="비밀번호"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </I.InputContainer>
-            <I.Button
-              className="signin"
-              onClick={handleSubmit}
-              disabled={loading}
-            >
-              {loading ? "로그인 중..." : "완료"}
-            </I.Button>
-            {error && <I.ErrorMessage>{error}</I.ErrorMessage>}
-          </I.Wrapper>
+          {/* form 태그 추가 */}
+          <form onSubmit={handleSubmit}>
+            <I.Wrapper>
+              <I.Image src={Anyone} alt="Anyone" />
+              <I.InputContainer>
+                <I.Input
+                  type="text"
+                  placeholder="아이디"
+                  value={id}
+                  onChange={(e) => setId(e.target.value)}
+                />
+                <I.Input
+                  type="password"
+                  placeholder="비밀번호"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </I.InputContainer>
+              {/* 버튼 타입을 "submit"으로 변경 */}
+              <I.Button
+                className="signin"
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? "로그인 중..." : "완료"}
+              </I.Button>
+              {error && <I.ErrorMessage>{error}</I.ErrorMessage>}
+            </I.Wrapper>
+          </form>
         </C.PageSpace>
       </C.Center>
     </C.Page>
