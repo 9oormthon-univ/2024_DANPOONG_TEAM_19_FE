@@ -45,6 +45,7 @@ export const Button = styled.button`
 
   &.signin:hover {
     background-color: #FFFFFF; 
+    color: black;
   }
 `;
 
