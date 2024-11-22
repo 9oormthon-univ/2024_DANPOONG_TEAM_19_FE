@@ -1,27 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 import * as MD from "../styles/Components/ModalDeleteStyle";
 import { axiosInstance } from "../axios/axios_instance";
 
-const ModalDelete = ({ onClose, isModalVisibleD, index, onDeleteSuccess }) => {
-  console.log("받은 index:", index);
+const ModalDelete = ({ onClose, isModalVisibleD, productId, onDeleteSuccess }) => {
   const handleDelete = async () => {
-    console.log("삭제하려는 상품의 index:", index); // index 확인
-    const productId = index;
-
     if (!productId) {
-      console.error("해당 인덱스에서 productId를 찾을 수 없습니다.");
+      console.error("삭제 요청 시 productId가 유효하지 않습니다.");
       return;
     }
 
     try {
+      // DELETE 요청: productId를 경로 파라미터로 전달
       const response = await axiosInstance.delete(`/api/core/product/${productId}`);
       console.log("삭제 성공:", response.data);
 
+      // 삭제 성공 시 콜백 호출
       if (onDeleteSuccess) {
-        onDeleteSuccess(index);
+        onDeleteSuccess(productId);
       }
 
-      onClose();
+      onClose(); // 모달 닫기
     } catch (error) {
       console.error("삭제 중 오류가 발생했습니다:", error.response?.data || error.message);
     }
