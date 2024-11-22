@@ -14,7 +14,7 @@ const Header = () => {
           <H.Icon src={alarm} alt="Alarm" />
         </H.RightIcons>
       </H.HeaderContainer>
-      <H.Separator /> 
+      <H.Separator />
     </>
   );
 };

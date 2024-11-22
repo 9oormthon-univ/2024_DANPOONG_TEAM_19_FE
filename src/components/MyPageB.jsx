@@ -6,8 +6,6 @@ import * as MB from "../styles/Components/MyPageBStyle";
 import Plus from "../assets/images/Mypage/plus.png";
 import ModalProgressB from "../components/ModalProgressB";
 
-const API_KEY = import.meta.env.VITE_API_KEY;
-
 function MypageB() {
   const [items, setItems] = useState([]);
   const [selectedPurchaseId, setSelectedPurchaseId] = useState(null);
@@ -29,7 +27,7 @@ function MypageB() {
 
   const getItems = async () => {
     try {
-      const response = await API.get("/mypage/allproduct");
+      const response = await API.get("/mypage/allpurchase/consumer");
       setItems(response.data);
       console.log(response.data);
     } catch (error) {
@@ -47,7 +45,7 @@ function MypageB() {
         <MB.ListItem key={item.id}>
           <MB.ListContent>
             <MB.ListContainer>
-              <MB.ListImg src={item.images?.[0]?.imageUrl || "/path/to/default-image.png"}></MB.ListImg>
+              <MB.ListImg src={item.images?.[0]?.imageUrl}></MB.ListImg>
               <MB.ListText>{item.title}</MB.ListText>
             </MB.ListContainer>
             <MB.ListMore src={Plus} onClick={() => openModalP(item.purchases?.[0]?.purchaseId)}></MB.ListMore>
