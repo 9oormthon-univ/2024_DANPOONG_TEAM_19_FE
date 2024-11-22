@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { axiosInstance } from "../../axios/axios_instance";
 import * as C from "../../styles/CommonStyle";
 import * as M from "../../styles/MyPage/MyPageStyle";
-import MyPageB from "../../components/MyPageB";
 import MyPageS from "../../components/MyPageS";
 import ProfileImage from "../../assets/images/Mypage/profile.png";
 import Back from "../../components/back";
 import Footer from "../../components/Footer";
-import MypageB from "../../components/MyPageB";
-
-const consumerToken = import.meta.env.VITE_CON_TOKEN;
-const sellerToken = import.meta.env.VITE_SEL_TOKEN;
+import MyPageB from "../../components/MyPageB";
 
 function MyPage() {
-  const [userType, setUserType] = useState(null);
+  const [userType, setUserType] = useState("");
+
+  const fetchUserType = async () => {
+    try {
+      const response = await axiosInstance.get("/api/core/mypage/who");
+      setUserType(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("사용자 타입을 가져오는 중 오류가 발생했습니다:", error);
+    }
+  };
 
   useEffect(() => {
-    const currentToken = localStorage.getItem("authToken");
-    if (currentToken === consumerToken) {
-      setUserType("consumer");
-    } else if (currentToken === sellerToken) {
-      setUserType("seller");
-    }
+    fetchUserType();
   }, []);
 
   return (
@@ -33,17 +35,12 @@ function MyPage() {
             <M.ProfileText>Test</M.ProfileText>
           </M.Profile>
           <M.Division>
-            <M.DivisionTitle>
-              {" "}
-              {userType === "consumer" ? "구매관리" : userType === "seller" ? "상품관리" : ""}
-            </M.DivisionTitle>
+            <M.DivisionTitle>{userType === "consumer" ? "구매관리" : "상품관리"}</M.DivisionTitle>
             <M.DivisionLine>
               <div />
             </M.DivisionLine>
           </M.Division>
-          <M.Content>
-            <MypageB></MypageB>
-          </M.Content>
+          <M.Content>{userType === "consumer" ? <MyPageB /> : <MyPageS />}</M.Content>
           <Footer />
         </C.PageSpace>
       </C.Center>

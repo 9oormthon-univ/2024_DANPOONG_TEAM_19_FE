@@ -10,9 +10,9 @@ const Video = () => {
     try {
       const response = await axiosInstance.get("/api/core/kakao/search");
       setItems(response.data.documents);
-      console.log(response.data.documents);
+      console.log("추천 영상:", response.data.documents);
     } catch (error) {
-      console.error("데이터를 불러오는 중 오류가 발생했습니다:", error);
+      console.error("추천 영상을 가져오는 중 오류가 발생했습니다:", error);
     }
   };
 
