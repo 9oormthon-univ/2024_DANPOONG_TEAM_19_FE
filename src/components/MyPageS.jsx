@@ -39,7 +39,7 @@ function MyPageS() {
     setIsModalVisibleD(false);
     setTimeout(() => {
       setIsModalOpenD(false);
-      setSelectedProductId(null); // 선택된 상품 ID 초기화
+      setSelectedProductId(null);
     }, 400);
   };
 
@@ -56,7 +56,6 @@ function MyPageS() {
   };
 
   const handleDeleteSuccess = (deletedId) => {
-    // 삭제된 상품을 목록에서 제거
     setItems((prevItems) => prevItems.filter((item) => item.productId !== deletedId));
   };
 
