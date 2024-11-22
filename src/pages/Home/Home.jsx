@@ -4,13 +4,12 @@ import * as C from "../../styles/CommonStyle";
 import * as H from "../../styles/Home/HomeStyle";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import useAllProducts from "../../hooks/Home/useAllProducts"; // 생성한 Hook 가져오기
+import Upload from '../../assets/images/Home/upload.svg';
+import Back from "../../components/back";
+import useAllProducts from "../../hooks/Home/useAllProducts"; 
 
 function Home() {
-  const { products, loading, error } = useAllProducts(); // Hook에서 상태 가져오기
-
-  if (loading) return <p>로딩 중...</p>; // 로딩 상태 처리
-  if (error) return <p>에러 발생: {error}</p>; // 에러 상태 처리
+  const { products, loading, error } = useAllProducts(); 
 
   return (
     <H.Page>
@@ -38,7 +37,7 @@ function Home() {
           </H.GridContainer>
         </H.PageSpace>
         <Link to="/upload">
-          <H.UploadButton alt="Upload" />
+          <H.UploadButton src={Upload} alt="Upload" />
         </Link>
         <Footer />
       </H.Center>
