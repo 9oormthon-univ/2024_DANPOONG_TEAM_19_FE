@@ -3,7 +3,7 @@ import * as C from "../../styles/CommonStyle";
 import * as O from "../../styles/MyPage/OrderStyle";
 import Plus from "../../assets/images/Mypage/plus.png";
 import Test from "../../assets/images/Common/test.png";
-import ModalProgressS from "../../components/ModalProgressS";
+import Back from "../../components/back";
 
 function Order() {
   const [isModalOpenP, setIsModalOpenP] = useState(false);
@@ -24,6 +24,7 @@ function Order() {
     <C.Page>
       <C.Center>
         <C.PageSpace>
+          <Back />
           <O.Product>
             <O.ProductImg src={Test}></O.ProductImg>
             <O.ProductTitle>Test</O.ProductTitle>
