@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../hooks/api";
 
 import * as MB from "../styles/Components/MyPageBStyle";
 
@@ -29,8 +29,7 @@ function MypageB() {
 
   const getItems = async () => {
     try {
-      const url = `${API_KEY}/mypage/allproduct`;
-      const response = await axios.get(url);
+      const response = await API.get("/mypage/allproduct");
       setItems(response.data);
       console.log(response.data);
     } catch (error) {
