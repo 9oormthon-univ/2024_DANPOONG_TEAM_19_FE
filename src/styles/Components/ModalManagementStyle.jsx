@@ -23,6 +23,7 @@ const slideDown = keyframes`
 `;
 
 export const ModalWrap = styled.div`
+  position: fixed;
   box-shadow: 0px -1px 3px rgba(0, 0, 0, 0.02);
   border-radius: 30px 30px 0 0;
   width: 100%;

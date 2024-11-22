@@ -12,7 +12,7 @@ function MyPageS() {
   const [isModalVisibleM, setIsModalVisibleM] = useState(false);
 
   const [items, setItems] = useState([]);
-  const [selectedProductId, setSelectedProductId] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   const getItems = async () => {
     try {
@@ -28,9 +28,9 @@ function MyPageS() {
     getItems();
   }, []);
 
-  const openModalD = (productId) => {
-    console.log("선택된 상품 ID:", productId);
-    setSelectedProductId(productId); // 삭제할 상품 ID 설정
+  const openModalD = (index) => {
+    console.log("선택된 상품 인덱스:", index);
+    setSelectedIndex(index);
     setIsModalOpenD(true);
     setIsModalVisibleD(true);
   };
@@ -39,7 +39,7 @@ function MyPageS() {
     setIsModalVisibleD(false);
     setTimeout(() => {
       setIsModalOpenD(false);
-      setSelectedProductId(null);
+      setSelectedIndex(null); // 선택된 인덱스 초기화
     }, 400);
   };
 
@@ -55,15 +55,15 @@ function MyPageS() {
     }, 400);
   };
 
-  const handleDeleteSuccess = (deletedId) => {
-    setItems((prevItems) => prevItems.filter((item) => item.productId !== deletedId));
+  const handleDeleteSuccess = (deletedIndex) => {
+    setItems((prevItems) => prevItems.filter((_, index) => index !== deletedIndex));
   };
 
   return (
     <MS.List>
-      {items.map((item) => (
-        <MS.ListItem key={item.productId}>
-          <MS.ListImg src={item.images?.[0]?.imageUrl}></MS.ListImg>
+      {items.map((item, index) => (
+        <MS.ListItem key={index}>
+          <MS.ListImg src={item.images?.[0]?.imageUrl || "/default-image.png"}></MS.ListImg>
           <MS.ListText>
             <MS.ListTitle>{item.title}</MS.ListTitle>
             <MS.ListMore src={More} onClick={openModalM}></MS.ListMore>
@@ -71,12 +71,12 @@ function MyPageS() {
           </MS.ListText>
           <MS.LsitPrice>{item.price.toLocaleString()}원</MS.LsitPrice>
           <MS.ListButton>
-            <MS.Button onClick={() => openModalD(item.productId)}>삭제</MS.Button>
-            {isModalOpenD && (
+            <MS.Button onClick={() => openModalD(index)}>삭제</MS.Button>
+            {isModalOpenD && selectedIndex === index && (
               <ModalDelete
                 onClose={closeModalD}
                 isModalVisibleD={isModalVisibleD}
-                productId={selectedProductId}
+                index={selectedIndex}
                 onDeleteSuccess={handleDeleteSuccess}
               />
             )}

@@ -20,7 +20,7 @@ const ModalManagement = ({ onClose, isModalVisibleM, productId }) => {
             <MM.Close>
               <MM.CloseBtn onClick={handleOrder}>주문 관리</MM.CloseBtn>
               <MM.CloseBtn
-                onCLick={handleAsk}
+                onClick={handleAsk}
                 style={{ color: "#000000", backgroundColor: "#f6f6f6", marginTop: "10px" }}
               >
                 문의 관리

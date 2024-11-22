@@ -27,12 +27,12 @@ function App() {
           <Route path="/select" element={<Select />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/detail" element={<Detail />} />
+          <Route path="/detail/:productId" element={<Detail />} />
           <Route path="/home" element={<Home />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/education" element={<Education />} />
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/order" element={<Order />} />
+          <Route path="/order/:productId" element={<Order />} />
           <Route path="/education/search" element={<SearchE />} />
           <Route path="/search" element={<Search />} />
           <Route path="/alarm" element={<Alarm />} />
