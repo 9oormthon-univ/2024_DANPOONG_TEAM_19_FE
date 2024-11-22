@@ -9,7 +9,9 @@ const slideUp = keyframes`
   }
 `;
 
-export const ModalOverlay = styled.div`
+export const ModalOverlay = styled.div.attrs((props) => ({
+  'data-isopen': props.isOpen, // 사용자 정의 속성으로 변경
+}))`
   position: fixed;
   top: 0;
   left: 0;
@@ -24,7 +26,9 @@ export const ModalOverlay = styled.div`
   transition: opacity 0.3s ease;
 `;
 
-export const ModalContent = styled.div`
+export const ModalContent = styled.div.attrs((props) => ({
+  'data-isopen': props.isOpen, // 사용자 정의 속성으로 변경
+}))`
   display: flex;
   flex-direction: column;
   align-items: center; 
@@ -42,7 +46,10 @@ export const ModalContent = styled.div`
   animation: ${({ isOpen }) => (isOpen ? slideUp : "none")} 0.3s ease forwards;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button.attrs((props) => ({
+  'data-color': props.color, // 사용자 정의 속성으로 변경
+  'data-textcolor': props.textColor, // 사용자 정의 속성으로 변경
+}))`
   width: 344px;
   height: 50px;
   font-size: 16px;
