@@ -5,13 +5,13 @@ export const Page = styled.div`
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   overflow-y: scroll;
   overflow-x: hidden;
-  position: relative
+  position: relative;
 `;
 
 export const Center = styled.div`

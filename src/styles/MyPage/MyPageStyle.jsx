@@ -5,7 +5,6 @@ export const Profile = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-top: 300px;
 `;
 
 export const ProfileImg = styled.img`
