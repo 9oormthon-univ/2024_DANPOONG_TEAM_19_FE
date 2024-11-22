@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 import * as C from "../../styles/CommonStyle";
 import * as S from "../../styles/Login/SelectStyle";
 import Back from "../../components/back";
+
+import useSendPreferences from "../../hooks/Login/useSendPreferences";
 
 import image1 from "../../assets/images/Login/image1.png";
 import image2 from "../../assets/images/Login/image2.png";
@@ -33,6 +36,8 @@ const items = [
 
 function Select() {
   const [selectedIds, setSelectedIds] = useState([]);
+  const { sendPreferences, loading, error, success } = useSendPreferences();
+  const navigate = useNavigate(); 
 
   const handleSelect = (id) => {
     if (selectedIds.includes(id)) {
@@ -40,7 +45,20 @@ function Select() {
     } else if (selectedIds.length < 5) {
       setSelectedIds([...selectedIds, id]);
     } else {
-      alert("최대 5개까지 선택할 수 있습니다."); 
+      alert("최대 5개까지 선택할 수 있습니다.");
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (selectedIds.length < 3) {
+      alert("최소 3개를 선택해주세요.");
+      return;
+    }
+
+    await sendPreferences(selectedIds); 
+
+    if (!error) {
+      navigate("/home"); 
     }
   };
 
@@ -65,7 +83,11 @@ function Select() {
                 </S.Box>
               ))}
             </S.Grid>
-            <S.Button className="next">완료</S.Button>
+            <S.Button className="next" onClick={handleSubmit} disabled={loading}>
+              {loading ? "전송 중..." : "완료"}
+            </S.Button>
+            {success && <S.Message>선택사항이 성공적으로 전송되었습니다.</S.Message>}
+            {error && <S.ErrorMessage>오류가 발생했습니다. 다시 시도해주세요.</S.ErrorMessage>}
           </S.Wrapper>
         </S.PageSpace>
       </S.Center>

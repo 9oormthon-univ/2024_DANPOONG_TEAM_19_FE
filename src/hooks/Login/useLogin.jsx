@@ -18,6 +18,7 @@ const useLogin = () => {
       const token = response.headers['authorization'] || response.data;
       localStorage.setItem("token", token);
 
+
       axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       console.log("로그인 성공! 토큰:", token);
 
