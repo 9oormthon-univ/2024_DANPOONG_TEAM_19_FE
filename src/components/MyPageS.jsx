@@ -18,7 +18,7 @@ function MyPageS() {
     try {
       const response = await axiosInstance.get("/api/core/mypage/allproduct");
       setItems(response.data);
-      console.log(response.data);
+      console.log("상품 데이터:", response.data);
     } catch (error) {
       console.error("데이터를 가져오는 중 오류가 발생했습니다:", error);
     }
@@ -28,26 +28,36 @@ function MyPageS() {
     getItems();
   }, []);
 
-  const openModalD = () => {
+  const openModalD = (productId) => {
+    console.log("선택된 상품 ID:", productId);
+    setSelectedProductId(productId); // 삭제할 상품 ID 설정
     setIsModalOpenD(true);
     setIsModalVisibleD(true);
   };
+
   const closeModalD = () => {
     setIsModalVisibleD(false);
     setTimeout(() => {
       setIsModalOpenD(false);
+      setSelectedProductId(null); // 선택된 상품 ID 초기화
     }, 400);
   };
+
   const openModalM = () => {
-    setSelectedProductId(productId);
     setIsModalOpenM(true);
     setIsModalVisibleM(true);
   };
+
   const closeModalM = () => {
     setIsModalVisibleM(false);
     setTimeout(() => {
       setIsModalOpenM(false);
     }, 400);
+  };
+
+  const handleDeleteSuccess = (deletedId) => {
+    // 삭제된 상품을 목록에서 제거
+    setItems((prevItems) => prevItems.filter((item) => item.productId !== deletedId));
   };
 
   return (
@@ -57,19 +67,20 @@ function MyPageS() {
           <MS.ListImg src={item.images?.[0]?.imageUrl}></MS.ListImg>
           <MS.ListText>
             <MS.ListTitle>{item.title}</MS.ListTitle>
-            <MS.ListMore src={More} onClick={() => openModalM(item.productId)}></MS.ListMore>
-            {isModalOpenM && (
-              <ModalManagement
-                onClose={closeModalM}
-                isModalVisibleM={isModalVisibleM}
-                productId={selectedProductId} // 선택된 상품 ID 전달
-              />
-            )}
+            <MS.ListMore src={More} onClick={openModalM}></MS.ListMore>
+            {isModalOpenM && <ModalManagement onClose={closeModalM} isModalVisibleM={isModalVisibleM} />}
           </MS.ListText>
           <MS.LsitPrice>{item.price.toLocaleString()}원</MS.LsitPrice>
           <MS.ListButton>
-            <MS.Button onClick={openModalD}>삭제</MS.Button>
-            {isModalOpenD && <ModalDelete onClose={closeModalD} isModalVisibleD={isModalVisibleD} />}
+            <MS.Button onClick={() => openModalD(item.productId)}>삭제</MS.Button>
+            {isModalOpenD && (
+              <ModalDelete
+                onClose={closeModalD}
+                isModalVisibleD={isModalVisibleD}
+                productId={selectedProductId}
+                onDeleteSuccess={handleDeleteSuccess}
+              />
+            )}
             <MS.ListLine></MS.ListLine>
             <MS.Button style={{ fontWeight: "bold", color: "#000000" }}>수정</MS.Button>
           </MS.ListButton>

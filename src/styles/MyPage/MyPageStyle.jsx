@@ -5,6 +5,7 @@ export const Profile = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-top: 300px;
 `;
 
 export const ProfileImg = styled.img`
@@ -60,4 +61,5 @@ export const Content = styled.div`
   width: 100%;
   margin-top: 21px;
   justify-content: center;
+  margin-bottom: 100px;
 `;
