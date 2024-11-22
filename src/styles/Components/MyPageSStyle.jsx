@@ -7,6 +7,7 @@ export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
+  width: 366px;
 `;
 
 export const ListItem = styled.li`
@@ -16,7 +17,7 @@ export const ListItem = styled.li`
   justify-content: center;
   display: felx;
   margin-bottom: 14px;
-  width: calc(50% - 7px);
+  width: 48%;
   height: 317px;
   border-radius: 20px;
   border: 0.5px solid #b2b2b2;

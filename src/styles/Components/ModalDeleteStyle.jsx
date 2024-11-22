@@ -27,7 +27,7 @@ export const ModalWrap = styled.div`
   border-radius: 30px;
   width: 373px;
   height: 212px;
-  z-index: 2;
+  z-index: 1000;
   background-color: #ffffff;
   animation: ${(props) => (props.$isModalVisibleD ? slideUp : slideDown)} 0.4s ease-in-out;
 `;
@@ -51,7 +51,7 @@ export const ModalBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.25);
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 999;
   display: flex;
   justify-content: center;
   align-items: center;

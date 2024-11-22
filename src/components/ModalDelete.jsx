@@ -1,7 +1,25 @@
 import React from "react";
 import * as MD from "../styles/Components/ModalDeleteStyle";
+import { axiosInstance } from "../axios/axios_instance";
 
-const ModalDelete = ({ onClose, isModalVisibleD }) => {
+const ModalDelete = ({ onClose, isModalVisibleD, productId, onDeleteSuccess }) => {
+  const handleDelete = async () => {
+    if (!productId) {
+      console.error("삭제 요청 시 productId가 정의되지 않았습니다.");
+      return;
+    }
+    try {
+      const response = await axiosInstance.delete(`/api/core/product/${productId}`);
+      console.log("삭제 성공:", response.data);
+      if (onDeleteSuccess) {
+        onDeleteSuccess(productId);
+      }
+      onClose();
+    } catch (error) {
+      console.error("삭제 중 오류가 발생했습니다:", error.response?.data || error.message);
+    }
+  };
+
   return (
     <>
       <MD.ModalBackground onClick={onClose} />
@@ -17,7 +35,10 @@ const ModalDelete = ({ onClose, isModalVisibleD }) => {
 
             <MD.Close>
               <MD.CloseBtn onClick={onClose}>취소</MD.CloseBtn>
-              <MD.CloseBtn style={{ color: "#000000", backgroundColor: "#f6f6f6", width: "190px", marginLeft: "20px" }}>
+              <MD.CloseBtn
+                onClick={handleDelete}
+                style={{ color: "#000000", backgroundColor: "#f6f6f6", width: "190px", marginLeft: "20px" }}
+              >
                 삭제
               </MD.CloseBtn>
             </MD.Close>
