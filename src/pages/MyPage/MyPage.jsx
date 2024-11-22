@@ -4,12 +4,14 @@ import * as M from "../../styles/MyPage/MyPageStyle";
 import MyPageB from "../../components/MyPageB";
 import MyPageS from "../../components/MyPageS";
 import ProfileImage from "../../assets/images/Mypage/profile.png";
+import Back from "../../components/back";
 
 function MyPage() {
   return (
     <C.Page>
       <C.Center>
         <C.PageSpace>
+          <Back />
           <M.Profile>
             <M.ProfileImg src={ProfileImage} alt="Profile"></M.ProfileImg>
             <M.ProfileText>Test</M.ProfileText>
@@ -21,7 +23,7 @@ function MyPage() {
             </M.DivisionLine>
           </M.Division>
           <M.Content>
-            <MyPageB></MyPageB>
+            <MyPageS></MyPageS>
           </M.Content>
         </C.PageSpace>
       </C.Center>
