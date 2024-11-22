@@ -6,6 +6,9 @@ const useAllProducts = () => {
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
 
+  console.log("Authorization 헤더:", axiosInstance.defaults.headers.common["Authorization"]);
+  console.log("Authorization 헤더:", axiosInstance.defaults.headers.common.Authorization);
+
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
