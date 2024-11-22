@@ -2,13 +2,13 @@ import React from "react";
 import * as MM from "../styles/Components/ModalManagementStyle";
 import { useNavigate } from "react-router-dom";
 
-const ModalManagement = ({ onClose, isModalVisibleM }) => {
+const ModalManagement = ({ onClose, isModalVisibleM, productId }) => {
   const navigate = useNavigate();
   const handleOrder = () => {
-    navigate("/order");
+    navigate(`/order/${productId}`);
   };
   const handleAsk = () => {
-    navigate("/detail");
+    navigate(`/detail/${productId}`);
   };
 
   return (
