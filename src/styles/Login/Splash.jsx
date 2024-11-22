@@ -4,12 +4,12 @@ export const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100dvh;
+  width: 100%;
+  height: 100%;
 `;
 
 export const Image = styled.img`
-  width: 100vw;
-  height: 100dvh;
+  width: 100%;
+  height: 100%;
   object-fit: cover; 
 `;
