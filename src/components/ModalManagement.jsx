@@ -4,10 +4,14 @@ import { useNavigate } from "react-router-dom";
 
 const ModalManagement = ({ onClose, isModalVisibleM, productId }) => {
   const navigate = useNavigate();
+
   const handleOrder = () => {
+    console.log("주문 관리로 이동 - productId:", productId);
     navigate(`/order/${productId}`);
   };
+
   const handleAsk = () => {
+    console.log("문의 관리로 이동 - productId:", productId);
     navigate(`/detail/${productId}`);
   };
 
@@ -21,7 +25,11 @@ const ModalManagement = ({ onClose, isModalVisibleM, productId }) => {
               <MM.CloseBtn onClick={handleOrder}>주문 관리</MM.CloseBtn>
               <MM.CloseBtn
                 onClick={handleAsk}
-                style={{ color: "#000000", backgroundColor: "#f6f6f6", marginTop: "10px" }}
+                style={{
+                  color: "#000000",
+                  backgroundColor: "#f6f6f6",
+                  marginTop: "10px",
+                }}
               >
                 문의 관리
               </MM.CloseBtn>

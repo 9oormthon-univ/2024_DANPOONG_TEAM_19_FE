@@ -9,34 +9,33 @@ import Back from "../../components/back";
 import Footer from "../../components/Footer";
 
 function Order() {
-  const { productId } = useParams();
-  const [product, setProduct] = useState(null);
-  const [buyers, setBuyers] = useState([]);
-  const [isModalOpenP, setIsModalOpenP] = useState(false);
-  const [isModalVisibleP, setIsModalVisibleP] = useState(false);
+  const { productId } = useParams(); // productId를 URL에서 가져옴
+  const [buyers, setBuyers] = useState([]); // 주문자 목록
+  const [product, setProduct] = useState(null); // 선택된 상품 정보
 
-  const openModalP = () => {
-    setIsModalOpenP(true);
-    setIsModalVisibleP(true);
-  };
-  const closeModalP = () => {
-    setIsModalVisibleP(false);
-    setTimeout(() => {
-      setIsModalOpenP(false);
-    }, 400);
-  };
-
-  const getProductDetails = async () => {
+  // 주문자 목록 가져오기
+  const getOrderDetails = async () => {
     try {
       const response = await axiosInstance.get(`/api/core/mypage/allpurchase/seller/${productId}`);
-      setProduct(response.data.product);
-      setBuyers(response.data.consumer);
+      setBuyers(response.data); // 주문자 목록 설정
     } catch (error) {
-      console.error("데이터를 가져오는 중 오류가 발생했습니다:", error);
+      console.error("주문자 데이터를 가져오는 중 오류가 발생했습니다:", error);
+    }
+  };
+
+  // 상품 정보 가져오기
+  const getProductDetails = async () => {
+    try {
+      const response = await axiosInstance.get(`/api/core/mypage/allproduct`);
+      const productData = response.data.find((item) => item.productId === parseInt(productId)); // 동일한 productId의 상품 찾기
+      setProduct(productData); // 선택된 상품 정보 설정
+    } catch (error) {
+      console.error("상품 데이터를 가져오는 중 오류가 발생했습니다:", error);
     }
   };
 
   useEffect(() => {
+    getOrderDetails();
     getProductDetails();
   }, [productId]);
 
@@ -47,8 +46,8 @@ function Order() {
           <Back />
           {product && (
             <O.Product>
-              <O.ProductImg src={product.images?.[0]?.imageUrl}></O.ProductImg>
-              <O.ProductTitle>{product.title}</O.ProductTitle>
+              <O.ProductImg src={product.images?.[0]?.imageUrl || "/default-image.png"} alt="상품 이미지" />
+              <O.ProductTitle>{product.title || "상품 제목 없음"}</O.ProductTitle>
             </O.Product>
           )}
           <O.Container>
@@ -60,11 +59,10 @@ function Order() {
               <O.ListItem key={index}>
                 <O.ListContent>
                   <O.ListContainer>
-                    <O.ListImg src={buyer.profileImage}></O.ListImg>
-                    <O.ListText>{buyer.name}</O.ListText>
+                    <O.ListImg src={buyer.profileImage || "/default-profile.png"} alt="profile" />
+                    <O.ListText>{buyer.consumerId || "Unknown User"}</O.ListText>
                   </O.ListContainer>
-                  <O.ListMore src={Plus} onClick={openModalP}></O.ListMore>
-                  {isModalOpenP && <ModalProgressS onClose={closeModalP} isModalVisibleP={isModalVisibleP} />}
+                  <O.ListMore src={Plus} onClick={() => alert(`관리 기능: ${buyer.consumerId}`)} />
                 </O.ListContent>
               </O.ListItem>
             ))}
