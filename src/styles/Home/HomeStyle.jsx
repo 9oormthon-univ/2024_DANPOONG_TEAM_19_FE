@@ -116,4 +116,7 @@ export const UploadButton = styled.img`
   width: 50px; 
   height: 50px; 
   cursor: pointer; 
+   @media (min-width: 1024px) {
+      right: 40%; 
+  }
 `;

@@ -12,10 +12,10 @@ function Home() {
   const { products, loading, error } = useAllProducts(); 
 
   return (
-    <H.Page>
+    <C.Page>
       <Header />
-      <H.Center>
-        <H.PageSpace>
+      <C.Center>
+        <C.PageSpace>
           <H.GridContainer>
             {products.map((product) => (
               <Link to={`/detail/${product.productId}`} key={product.productId}> {/* productId로 링크 */}
@@ -35,13 +35,13 @@ function Home() {
               </Link>
             ))}
           </H.GridContainer>
-        </H.PageSpace>
+        </C.PageSpace>
         <Link to="/upload">
           <H.UploadButton src={Upload} alt="Upload" />
         </Link>
         <Footer />
-      </H.Center>
-    </H.Page>
+      </C.Center>
+    </C.Page>
   );
 }
 

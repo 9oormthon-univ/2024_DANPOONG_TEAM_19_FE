@@ -11,9 +11,9 @@ function Education() {
 
   return (
     <C.Page>
+      <Header />
       <C.Center>
         <C.PageSpace>
-          <Header />
           <E.Container>
             <E.Btn data-active={activeButton === "video"} onClick={() => setActiveButton("video")}>
               영상
