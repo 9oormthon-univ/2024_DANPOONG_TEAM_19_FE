@@ -4,7 +4,7 @@ export const FooterContainer = styled.footer`
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 400px;
+  width: 100%;
   height: 80px;
   display: flex;
   justify-content: space-around;
@@ -16,6 +16,7 @@ export const FooterContainer = styled.footer`
   height: 80px;
 
   @media (min-width: 1024px) {
+    margin-left: 39%;
     width: 400px;
   }
 `;
