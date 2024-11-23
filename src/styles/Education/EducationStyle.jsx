@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
+export const Education = styled.div``;
+
 export const Container = styled.div`
   display: flex;
-  margin: 100px 0 0 21px;
+  padding: 100px 18px 0 18px;
 `;
 
 export const Btn = styled.button`

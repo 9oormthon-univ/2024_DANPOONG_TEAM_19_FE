@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as C from "../../styles/CommonStyle";
-import * as SE from "../../styles/Education/SearchEStyle";
+import * as S from "../../styles/Home/SearchStyle";
 import Delete from "../../assets/images/Common/delete.png";
 import SearchHeader from "../../components/searchHeader";
 
@@ -10,15 +10,15 @@ function SearchE() {
       <C.Center>
         <C.PageSpace>
           <SearchHeader />
-          <SE.Search>
-            <SE.SearchTitle>최근 검색</SE.SearchTitle>
-            <SE.SearchContent>
-              <SE.SearchItem>
-                <SE.SearchText>뜨개 키링 만들기</SE.SearchText>
-                <SE.SearchDelete src={Delete} alt="Delete"></SE.SearchDelete>
-              </SE.SearchItem>
-            </SE.SearchContent>
-          </SE.Search>
+          <S.Search>
+            <S.SearchTitle>최근 검색</S.SearchTitle>
+            <S.SearchContent>
+              <S.SearchItem>
+                <S.SearchText></S.SearchText>
+                <S.SearchDelete src={Delete} alt="Delete" />
+              </S.SearchItem>
+            </S.SearchContent>
+          </S.Search>
         </C.PageSpace>
       </C.Center>
     </C.Page>
