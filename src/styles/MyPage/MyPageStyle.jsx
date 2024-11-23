@@ -57,7 +57,6 @@ export const DivisionLine = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  width: 100%;
   margin-top: 21px;
   justify-content: center;
   margin-bottom: 100px;

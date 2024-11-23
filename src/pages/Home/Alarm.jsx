@@ -6,9 +6,9 @@ import Back from "../../components/back";
 const Alarm = () => {
   return (
     <C.Page>
+      <Back />
       <C.Center>
         <C.PageSpace>
-          <Back />
           <A.Alarm>
             <A.AlarmItem isRead={true}>
               <A.AlarmText>박복순닙이 [하트키링] 구매를 요청하였습니다.</A.AlarmText>

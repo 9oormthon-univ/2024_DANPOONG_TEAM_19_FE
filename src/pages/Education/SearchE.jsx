@@ -48,11 +48,13 @@ function SearchE() {
 
   return (
     <C.Page>
+      <SearchHeader inputValue={inputValue} setInputValue={setInputValue} onSearch={handleSearch} />
       <C.Center>
         <C.PageSpace>
-          <SearchHeader inputValue={inputValue} setInputValue={setInputValue} onSearch={handleSearch} />
           <SE.Search>
-            <SE.SearchTitle>최근 검색</SE.SearchTitle>
+            <SE.SearchContainer>
+              <SE.SearchTitle>최근 검색</SE.SearchTitle>
+            </SE.SearchContainer>
             <SE.SearchContent>
               {searchHistory.map((item, index) => (
                 <SE.SearchItem key={index}>
@@ -62,9 +64,9 @@ function SearchE() {
               ))}
             </SE.SearchContent>
           </SE.Search>
-          <Footer />
         </C.PageSpace>
       </C.Center>
+      <Footer />
     </C.Page>
   );
 }

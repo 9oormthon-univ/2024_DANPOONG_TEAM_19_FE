@@ -18,17 +18,19 @@ function Education() {
       <C.Center>
         <C.PageSpace>
           <E.Container>
-            <E.Btn data-active={activeButton === "video"} onClick={() => setActiveButton("video")}>
-              영상
-            </E.Btn>
-            <E.Btn data-active={activeButton === "notice"} onClick={() => setActiveButton("notice")}>
-              공고
-            </E.Btn>
+            <E.Button>
+              <E.Btn data-active={activeButton === "video"} onClick={() => setActiveButton("video")}>
+                영상
+              </E.Btn>
+              <E.Btn data-active={activeButton === "notice"} onClick={() => setActiveButton("notice")}>
+                공고
+              </E.Btn>
+            </E.Button>
           </E.Container>
           <E.Content>{activeButton === "video" ? <Video query={query} /> : <Notice />}</E.Content>
-          <Footer />
         </C.PageSpace>
       </C.Center>
+      <Footer />
     </C.Page>
   );
 }
