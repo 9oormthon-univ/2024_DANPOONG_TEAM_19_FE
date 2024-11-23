@@ -15,16 +15,16 @@ const Footer = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const path = location.pathname; 
+    const path = location.pathname;
 
     if (path.startsWith("/home") || path === "/search") {
-      setActiveMenu("home"); 
+      setActiveMenu("home");
     } else if (path.startsWith("/education")) {
-      setActiveMenu("education"); 
+      setActiveMenu("education");
     } else if (path.startsWith("/mypage")) {
-      setActiveMenu("mypage"); 
+      setActiveMenu("mypage");
     } else {
-      setActiveMenu(""); 
+      setActiveMenu("");
     }
   }, [location.pathname]);
 
