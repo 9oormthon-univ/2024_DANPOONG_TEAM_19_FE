@@ -19,8 +19,8 @@ function Order() {
   const [selectedBuyerName, setSelectedBuyerName] = useState(null);
 
   const openModalP = (purchaseId, consumerName) => {
-    console.log("선택된 purchaseId:", purchaseId);
-    console.log("선택된 name:", consumerName);
+    //console.log("선택된 purchaseId:", purchaseId);
+    //console.log("선택된 name:", consumerName);
     setSelectedPurchaseId(purchaseId);
     setSelectedBuyerName(consumerName);
     setIsModalOpenP(true);
@@ -54,7 +54,7 @@ function Order() {
       const response = await axiosInstance.get(`/api/core/mypage/allproduct`);
       const productData = response.data.find((item) => item.productId === parseInt(productId));
       setProduct(productData);
-      console.log(productData);
+      //console.log(productData);
     } catch (error) {
       console.error("상품 데이터를 가져오는 중 오류가 발생했습니다:", error);
     }

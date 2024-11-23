@@ -14,7 +14,7 @@ const Alarm = () => {
     try {
       const response = await axiosInstance.get("/api/core/mypage/who");
       setUserType(response.data);
-      console.log("사용자 타입:", response.data);
+      //console.log("사용자 타입:", response.data);
     } catch (error) {
       console.error("사용자 타입을 가져오는 중 오류가 발생했습니다:", error);
     }
@@ -25,7 +25,7 @@ const Alarm = () => {
     try {
       const response = await axiosInstance.get("/api/core/alarm");
       const data = response.data.data.reverse(); // 서버 데이터 역순으로 저장
-      console.log("알람 데이터:", data);
+      //console.log("알람 데이터:", data);
 
       const localReadStatus = JSON.parse(localStorage.getItem("readStatus")) || {};
 

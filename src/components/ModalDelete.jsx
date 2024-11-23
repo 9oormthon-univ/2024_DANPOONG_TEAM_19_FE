@@ -11,9 +11,9 @@ const ModalDelete = ({ onClose, isModalVisibleD, productId, onDeleteSuccess }) =
 
     try {
       // DELETE 요청: productId를 경로 파라미터로 전달
-      console.log(productId);
+      //console.log(productId);
       const response = await axiosInstance.delete(`/api/core/product/${productId}`);
-      console.log("삭제 성공:", response.data);
+      //console.log("삭제 성공:", response.data);
 
       // 삭제 성공 시 콜백 호출
       if (onDeleteSuccess) {

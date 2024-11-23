@@ -28,17 +28,17 @@ const ModalProgressB = ({ onClose, isModalVisibleP, purchaseId, title }) => {
         const response = await axiosInstance.get(`/api/core/mypage/${purchaseId}`);
         const data = response.data;
 
-        console.log("API 응답 데이터:", data);
+        //console.log("API 응답 데이터:", data);
         setPurchaseData(data);
 
         // 상태 값 매핑 및 activeStep 계산
         const stepLabel = statusMapping[data.status]; // 상태 값을 단계 이름으로 변환
-        console.log("data.status 값:", data.status);
-        console.log("변환된 단계 이름:", stepLabel);
+        //console.log("data.status 값:", data.status);
+        //console.log("변환된 단계 이름:", stepLabel);
 
         if (stepLabel) {
           const statusIndex = steps.indexOf(stepLabel); // `steps`에서 인덱스 찾기
-          console.log("단계 인덱스:", statusIndex);
+          //console.log("단계 인덱스:", statusIndex);
 
           if (statusIndex >= 0) {
             setActiveStep(statusIndex); // 활성 스텝 업데이트
