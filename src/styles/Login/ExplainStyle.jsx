@@ -20,9 +20,10 @@ export const Image = styled.img`
 `;
 
 export const Jump = styled.img`
-  position: absolute;
-  top: 50px;
-  right: 20px;
+  position: fixed;
+  align-self: start;
+  margin-top: 60px;
+  margin-left: 280px;
   width: 83px;
   height: 33px;
 `;
