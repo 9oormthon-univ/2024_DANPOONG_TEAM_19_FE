@@ -43,24 +43,16 @@ function Signin() {
             <I.Wrapper>
               <I.Image src={Anyone} alt="Anyone" />
               <I.InputContainer>
-                <I.Input
-                  type="text"
-                  placeholder="아이디"
-                  value={id}
-                  onChange={(e) => setId(e.target.value)}
-                />
+                <I.Input type="text" placeholder="아이디" value={id} onChange={(e) => setId(e.target.value)} />
                 <I.Input
                   type="password"
                   placeholder="비밀번호"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  style={{ fontFamily: "Number" }}
                 />
               </I.InputContainer>
-              <I.Button
-                className="signin"
-                type="submit"
-                disabled={loading}
-              >
+              <I.Button className="signin" type="submit" disabled={loading}>
                 {loading ? "로그인 중..." : "완료"}
               </I.Button>
             </I.Wrapper>

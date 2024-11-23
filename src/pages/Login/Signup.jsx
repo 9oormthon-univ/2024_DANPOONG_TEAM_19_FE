@@ -25,9 +25,9 @@ function Signup() {
       alert("아이디는 4글자 이상으로 입력해주세요.");
       return;
     }
-  
+
     const result = await checkDuplicate(userId);
-  
+
     if (result === false) {
       setIsIdValid(true);
       console.log("사용 가능한 아이디입니다.");
@@ -40,7 +40,7 @@ function Signup() {
   const handlePasswordChange = (e) => {
     const input = e.target.value;
     setPassword(input);
-  
+
     if (confirmPassword.length > 0) {
       setIsPasswordMatch(input === confirmPassword);
     }
@@ -91,7 +91,12 @@ function Signup() {
       <C.Center>
         <C.PageSpace>
           <U.Wrapper>
-            <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit();
+              }}
+            >
               <U.FieldContainer $marginBottom="16px">
                 <U.InputGroup>
                   <U.Input
@@ -99,14 +104,11 @@ function Signup() {
                     placeholder="아이디"
                     value={userId}
                     onInput={(e) => {
-                      e.target.value = e.target.value.replace(/[^a-zA-Z0-9]/g, '');
+                      e.target.value = e.target.value.replace(/[^a-zA-Z0-9]/g, "");
                       setUserId(e.target.value);
                     }}
                   />
-                  <U.DuplicateButton
-                    onClick={handleDuplicateCheck}
-                    disabled={isChecking}
-                  >
+                  <U.DuplicateButton onClick={handleDuplicateCheck} disabled={isChecking}>
                     {isChecking ? "확인 중..." : "중복확인"}
                   </U.DuplicateButton>
                 </U.InputGroup>
@@ -132,6 +134,7 @@ function Signup() {
                     placeholder="비밀번호"
                     value={password}
                     onChange={handlePasswordChange}
+                    style={{ fontFamily: "Number" }}
                   />
                 </U.InputGroup>
               </U.FieldContainer>
@@ -143,12 +146,10 @@ function Signup() {
                     placeholder="비밀번호 확인"
                     value={confirmPassword}
                     onChange={handleConfirmPasswordChange}
+                    style={{ fontFamily: "Number" }}
                   />
                 </U.InputGroup>
-                <U.Message
-                  color={isPasswordMatch === false ? "#ee8814" : "#808080"}
-                  $visible={true}
-                >
+                <U.Message color={isPasswordMatch === false ? "#ee8814" : "#808080"} $visible={true}>
                   {isPasswordMatch === false
                     ? "비밀번호가 일치하지 않습니다."
                     : isPasswordMatch === true
@@ -159,12 +160,7 @@ function Signup() {
 
               <U.FieldContainer $marginBottom="16px">
                 <U.InputGroup>
-                  <U.Input
-                    type="text"
-                    placeholder="이름"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
+                  <U.Input type="text" placeholder="이름" value={name} onChange={(e) => setName(e.target.value)} />
                 </U.InputGroup>
               </U.FieldContainer>
 
@@ -175,6 +171,7 @@ function Signup() {
                     placeholder="나이"
                     value={age}
                     onChange={(e) => setAge(e.target.value)}
+                    style={{ fontFamily: "Number" }}
                   />
                 </U.InputGroup>
               </U.FieldContainer>
@@ -199,11 +196,7 @@ function Signup() {
               </U.FieldContainer>
 
               <U.FieldContainer>
-                <U.Button
-                  className="next"
-                  type="submit"
-                  disabled={loading}
-                >
+                <U.Button className="next" type="submit" disabled={loading}>
                   {loading ? "처리 중..." : "다음"}
                 </U.Button>
                 {error && <U.Message color="#ff4d4d">{error}</U.Message>}

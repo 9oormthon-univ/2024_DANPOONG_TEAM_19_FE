@@ -72,7 +72,7 @@ function Order() {
         <C.PageSpace>
           {product && (
             <O.Product>
-              <O.ProductImg src={product.images?.[0]?.imageUrl} alt="상품 이미지" />
+              <O.ProductImg src={product.imgUrl} alt="상품 이미지" />
               <O.ProductTitle>{product.title || "상품 제목 없음"}</O.ProductTitle>
             </O.Product>
           )}

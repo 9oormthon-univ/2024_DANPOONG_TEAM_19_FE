@@ -44,13 +44,20 @@ const Video = () => {
     window.open(url, "_blank");
   };
 
+  const truncateTitle = (title) => {
+    if (title.length > 60) {
+      return `${title.slice(0, 60)} ···`;
+    }
+    return title;
+  };
+
   return (
     <V.List>
       {items.map((item, index) => (
         <V.ListItem key={index} onClick={() => handleVideo(item.url)}>
           <V.ListImg src={item.thumbnail} alt="미리보기" />
           <V.ListText>
-            <V.ListTitle>{item.title}</V.ListTitle>
+            <V.ListTitle>{truncateTitle(item.title)}</V.ListTitle>
           </V.ListText>
         </V.ListItem>
       ))}

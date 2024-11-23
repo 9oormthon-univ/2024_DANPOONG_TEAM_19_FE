@@ -9,8 +9,9 @@ import Footer from "../../components/Footer";
 import MyPageB from "../../components/MyPageB";
 
 function MyPage() {
-  const [userType, setUserType] = useState("");
+  const [userType, setUserType] = useState(null); // null로 초기화
   const [userInfo, setUserInfo] = useState([]);
+  const [loading, setLoading] = useState(true); // 로딩 상태 추가
 
   const fetchUserType = async () => {
     try {
@@ -33,9 +34,18 @@ function MyPage() {
   };
 
   useEffect(() => {
-    fetchUserType();
-    getUserInfo();
+    const fetchData = async () => {
+      await fetchUserType();
+      await getUserInfo();
+      setLoading(false); // 모든 데이터 로드 후 로딩 상태 해제
+    };
+    fetchData();
   }, []);
+
+  if (loading || userType === null) {
+    // 로딩 중인 경우
+    return <C.Page>Loading...</C.Page>;
+  }
 
   return (
     <C.Page>

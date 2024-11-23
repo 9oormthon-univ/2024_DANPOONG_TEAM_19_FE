@@ -51,7 +51,7 @@ function MypageB() {
         <MB.ListItem key={item.purchaseId}>
           <MB.ListContent>
             <MB.ListContainer>
-              <MB.ListImg src={item.images?.[0]?.imageUrl || "/default-image.png"} alt="상품 이미지" />
+              <MB.ListImg src={item.imgUrl || "/default-image.png"} alt="상품 이미지" />
               <MB.ListText>{item.title}</MB.ListText>
             </MB.ListContainer>
             {/* 구매 ID를 기반으로 모달 열기 */}
