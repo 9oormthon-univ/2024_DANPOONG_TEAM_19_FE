@@ -45,6 +45,7 @@ export const ListTitle = styled.div`
   width: 135px;
   font-weight: bold;
   font-size: 14px;
+  font-family: EliceDigitalBaeum_Bold;
   color: #000000;
 `;
 
@@ -56,9 +57,13 @@ export const ListMore = styled.img`
 
 export const LsitPrice = styled.div`
   font-weight: bold;
+  align-items: baseline;
   font-size: 20px;
   color: #000000;
   padding: 0px 16px;
+  font-family: Number;
+  display: flex;
+  flex-direction: row;
 `;
 
 export const ListButton = styled.div`
@@ -78,6 +83,7 @@ export const Button = styled.div`
   color: #b2b2b2;
   font-size: 14px;
   padding: 0 20px 0 26px;
+  font-family: EliceDigitalBaeum_Bold;
 `;
 
 export const ListLine = styled.div`

@@ -21,6 +21,7 @@ export const Btn = styled.button`
   border-radius: 20px;
   margin-right: 10px;
   font-size: 14px;
+  font-family: EliceDigitalBaeum_Regular;
   cursor: pointer;
   color: ${(props) => (props["data-active"] ? "#ffffff" : "#666666")};
   background-color: ${(props) => (props["data-active"] ? "#ee8814" : "#ffffff")};

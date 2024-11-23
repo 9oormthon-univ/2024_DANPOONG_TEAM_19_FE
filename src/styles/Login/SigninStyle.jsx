@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 55%; 
+  padding-top: 55%;
   width: 100%;
 `;
 
@@ -12,7 +12,7 @@ export const InputContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
- align-items: center;
+  align-items: center;
   gap: 10px;
 `;
 
@@ -24,14 +24,15 @@ export const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 20px;
   box-sizing: border-box;
-  background-color: #FFFFFF; 
+  background-color: #ffffff;
+  font-family: EliceDigitalBaeum_Regular;
 `;
 
 export const Button = styled.button`
   width: 344px;
   height: 50px;
   font-size: 16px;
-  font-weight: bold;
+  font-family: EliceDigitalBaeum_Bold;
   border: none;
   border-radius: 30px;
   cursor: pointer;
@@ -39,12 +40,12 @@ export const Button = styled.button`
   margin-top: 40px;
 
   &.signin {
-    background-color: #EE8814; 
+    background-color: #ee8814;
     color: white;
   }
 
   &.signin:hover {
-    background-color: #FFFFFF; 
+    background-color: #ffffff;
     color: black;
   }
 `;

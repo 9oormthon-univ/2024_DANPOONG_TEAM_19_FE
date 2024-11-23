@@ -27,7 +27,7 @@ export const PageSpace = styled.div`
   align-items: flex-start;
   width: 100vw;
   min-height: 100vh;
-   height: 100%;
+  height: 100%;
 `;
 
 export const Wrapper = styled.div`
@@ -38,7 +38,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   gap: 36px;
-  padding-top:14%;
+  padding-top: 14%;
 `;
 
 export const Title = styled.h1`
@@ -50,8 +50,9 @@ export const Title = styled.h1`
 
 export const Comment = styled.h1`
   font-size: 15px;
+  font-family: EliceDigitalBaeum_Bold;
   font-weight: bold;
-  color: #EE8814;
+  color: #ee8814;
   text-align: left;
   margin-right: 30%;
 `;
@@ -78,8 +79,7 @@ export const Box = styled.div`
   border-radius: 20px;
   overflow: hidden;
   position: relative;
-  background: ${({ image }) =>
-    image ? `url(${image}) center/cover no-repeat` : "none"};
+  background: ${({ image }) => (image ? `url(${image}) center/cover no-repeat` : "none")};
   cursor: pointer;
   transition: all 0.3s ease;
 
@@ -103,7 +103,6 @@ export const Box = styled.div`
     z-index: 1;
   }
 `;
-
 
 export const Button = styled.button`
   width: 344px;

@@ -78,6 +78,7 @@ export const ModalText = styled.div`
   margin-top: 40px;
   color: #000000;
   white-space: pre-line;
+  font-family: EliceDigitalBaeum_Regular;
 `;
 
 export const Close = styled.div`
@@ -95,7 +96,7 @@ export const CloseBtn = styled.div`
   background-color: #ee8814;
 
   font-size: 15px;
-  font-weight: 600;
+  font-family: EliceDigitalBaeum_Bold;
   text-align: center;
 
   display: flex;

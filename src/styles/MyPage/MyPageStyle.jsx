@@ -19,6 +19,7 @@ export const ProfileText = styled.div`
   color: #000000;
   font-weight: bold;
   margin-bottom: 40px;
+  font-family: EliceDigitalBaeum_Bold;
 `;
 
 export const Division = styled.div`
@@ -31,8 +32,8 @@ export const Division = styled.div`
 export const DivisionTitle = styled.div`
   font-size: 16px;
   color: #000000;
-  font-weight: bold;
   margin-bottom: 10px;
+  font-family: EliceDigitalBaeum_Bold;
 `;
 
 export const DivisionLine = styled.div`

@@ -90,6 +90,7 @@ export const ProfileImg = styled.img`
 export const ProfileName = styled.div`
   font-size: 12px;
   color: #000000;
+  font-family: EliceDigitalBaeum_Regular;
 `;
 
 export const Close = styled.img`
@@ -148,6 +149,6 @@ export const StepLabel = styled.div`
   margin-top: 8px;
   font-size: 12px;
   color: ${({ active }) => (active ? "#ee8814" : "#000000")};
-  font-weight: ${({ active }) => (active ? "bold" : "none")};
+  font-family: ${({ active }) => (active ? "EliceDigitalBaeum_Bold" : "EliceDigitalBaeum_Regular")};
   transition: color 0.4s;
 `;

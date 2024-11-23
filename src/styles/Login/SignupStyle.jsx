@@ -31,7 +31,8 @@ export const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 20px;
   box-sizing: border-box;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
+  font-family: EliceDigitalBaeum_Regular;
 `;
 
 export const DuplicateButton = styled.button`
@@ -43,6 +44,7 @@ export const DuplicateButton = styled.button`
   pointer-events: auto;
   padding: 10px 15px;
   font-size: 14px;
+  font-family: EliceDigitalBaeum_Bold;
   background-color: #ee8814;
   color: white;
   border: none;
@@ -69,11 +71,13 @@ export const RoleButton = styled.button`
   background-color: #ffffff;
   color: black;
   cursor: pointer;
+  font-family: EliceDigitalBaeum_Regular;
 
   &.selected {
     background-color: #ee8814;
     color: white;
     border: none;
+    font-family: EliceDigitalBaeum_Bold;
   }
 `;
 
@@ -101,7 +105,7 @@ export const Message = styled.p`
   font-size: 14px;
   color: ${({ color }) => color};
   height: 20px;
-  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden")}; 
+  visibility: ${({ $visible }) => ($visible ? "visible" : "hidden")};
   text-align: left;
   line-height: 20px;
 `;

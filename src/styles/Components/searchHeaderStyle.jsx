@@ -58,6 +58,7 @@ export const SearchInput = styled.input`
   background-color: transparent;
   font-size: 14px;
   color: #333;
+  font-family: EliceDigitalBaeum_Regular;
 `;
 
 export const SearchIcon = styled.img`
