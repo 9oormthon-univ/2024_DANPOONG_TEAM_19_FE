@@ -20,13 +20,17 @@ const Header = () => {
   const handleHome = () => {
     navigate("/home");
   };
+
+  const handleAlarm = () => {
+    navigate("/alarm");
+  };
   return (
     <>
       <H.HeaderContainer>
         <H.Logo src={anyone} onClick={handleHome} alt="Anyone Logo" />
         <H.RightIcons>
           <H.Icon src={search} onClick={handleSearch} alt="Search" />
-          <H.Icon src={alarm} alt="Alarm" />
+          <H.Icon src={alarm} onClick={handleAlarm} alt="Alarm" />
         </H.RightIcons>
       </H.HeaderContainer>
       <H.Separator />

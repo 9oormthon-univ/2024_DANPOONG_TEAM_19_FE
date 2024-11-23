@@ -3,6 +3,7 @@ import * as C from "../../styles/CommonStyle";
 import * as SE from "../../styles/Education/SearchEStyle";
 import Delete from "../../assets/images/Common/delete.png";
 import SearchHeader from "../../components/searchHeader";
+import Footer from "../../components/Footer";
 
 function SearchE() {
   const [inputValue, setInputValue] = useState("");
@@ -56,6 +57,7 @@ function SearchE() {
               ))}
             </SE.SearchContent>
           </SE.Search>
+          <Footer />
         </C.PageSpace>
       </C.Center>
     </C.Page>
