@@ -5,15 +5,13 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 100%;
+    max-width: 370px;
   width: 100%;
   padding: 0 16px;
   box-sizing: border-box;
   top: 40px;
   background-color: #
-    @media (min-width: 1024px) {
-      max-width: 390px;
-  }
+
 `;
 
 export const Logo = styled.img`
@@ -36,7 +34,7 @@ export const Icon = styled.img`
 export const Separator = styled.div`
   position: absolute;
   top: 90px;
-  width: 90%;
+ width: 370px;
   height: 1px;
 
   background-color: #e2e2e2;
