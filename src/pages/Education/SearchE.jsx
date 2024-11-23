@@ -41,6 +41,11 @@ function SearchE() {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(updatedHistory));
   };
 
+  // 검색 기록 항목 클릭 시 inputValue 업데이트
+  const handleSearchItemClick = (item) => {
+    setInputValue(item);
+  };
+
   return (
     <C.Page>
       <C.Center>
@@ -51,7 +56,7 @@ function SearchE() {
             <SE.SearchContent>
               {searchHistory.map((item, index) => (
                 <SE.SearchItem key={index}>
-                  <SE.SearchText>{item}</SE.SearchText>
+                  <SE.SearchText onClick={() => handleSearchItemClick(item)}>{item}</SE.SearchText>
                   <SE.SearchDelete src={Delete} alt="Delete" onClick={() => handleDelete(item)} />
                 </SE.SearchItem>
               ))}

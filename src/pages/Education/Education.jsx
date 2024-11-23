@@ -14,7 +14,7 @@ function Education() {
 
   return (
     <C.Page>
-                <Header />
+      <Header />
       <C.Center>
         <C.PageSpace>
           <E.Container>
@@ -25,7 +25,7 @@ function Education() {
               공고
             </E.Btn>
           </E.Container>
-          <E.Content>{activeButton === "video" ? <Video /> : <Notice />}</E.Content>
+          <E.Content>{activeButton === "video" ? <Video query={query} /> : <Notice />}</E.Content>
           <Footer />
         </C.PageSpace>
       </C.Center>

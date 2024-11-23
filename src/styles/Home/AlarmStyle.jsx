@@ -5,7 +5,7 @@ export const Alarm = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 120px;
 `;
 
 export const AlarmItem = styled.div`
