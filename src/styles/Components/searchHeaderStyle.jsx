@@ -6,10 +6,10 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   max-width: 100%;
-  width: 100%;
+  width: 97.4%;
   padding: 0 16px;
   box-sizing: border-box;
-  top: 40px;
+  top: 30.5px;
 `;
 
 export const Logo = styled.img`
@@ -47,7 +47,7 @@ export const SearchContainer = styled.div`
   border-radius: 20px;
   padding: 12px 20px;
   gap: 8px;
-  width: 80%;
+  width: 75%;
   border: 1px solid #b2b2b2;
 `;
 

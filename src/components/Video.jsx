@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom"; // URL에서 쿼리 파라미터 가져오기
 import { axiosInstance } from "../axios/axios_instance";
 import * as V from "../styles/Components/VideoStyle";
 
-const Video = ({ query }) => {
+const Video = () => {
   const [items, setItems] = useState([]);
+  const [searchParams] = useSearchParams(); // URL에서 query 파라미터 가져오기
+  const query = searchParams.get("query"); // query 파라미터 추출
 
+  // 추천 영상 요청
   const getRecommendedVideos = async () => {
     try {
-      const response = await axiosInstance.get("/api/core/kakao/search/recommended");
+      const response = await axiosInstance.get("/api/core/kakao/search");
       setItems(response.data.documents);
       console.log("추천영상: ", response.data.documents);
     } catch (error) {
@@ -15,9 +19,12 @@ const Video = ({ query }) => {
     }
   };
 
-  const getSearchResults = async (searchQuery) => {
+  // 검색 결과 요청
+  const getSearchResults = async (query) => {
     try {
-      const response = await axiosInstance.get(`/api/core/kakao/search/${searchQuery}`);
+      const response = await axiosInstance.get(`/api/core/kakao/search/keyword`, {
+        params: { query }, // 쿼리 파라미터 전달
+      });
       setItems(response.data.documents);
       console.log("검색결과: ", response.data.documents);
     } catch (error) {
@@ -41,7 +48,7 @@ const Video = ({ query }) => {
     <V.List>
       {items.map((item, index) => (
         <V.ListItem key={index} onClick={() => handleVideo(item.url)}>
-          <V.ListImg src={item.thumbnail || "/default-thumbnail.png"} alt="미리보기" />
+          <V.ListImg src={item.thumbnail} alt="미리보기" />
           <V.ListText>
             <V.ListTitle>{item.title}</V.ListTitle>
           </V.ListText>
