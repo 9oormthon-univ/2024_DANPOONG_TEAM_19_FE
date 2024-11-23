@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-export const Education = styled.div``;
-
 export const Container = styled.div`
   display: flex;
   padding: 100px 18px 0 18px;
@@ -35,4 +33,5 @@ export const Content = styled.div`
   display: flex;
   justify-content: center;
   padding: 0 18px;
+  margin-bottom: 100px;
 `;

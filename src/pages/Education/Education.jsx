@@ -14,24 +14,9 @@ function Education() {
 
   return (
     <C.Page>
-      <Header />
       <C.Center>
         <C.PageSpace>
-<<<<<<< HEAD
-          <E.Education>
-            <Header />
-            <E.Container>
-              <E.Btn data-active={activeButton === "video"} onClick={() => setActiveButton("video")}>
-                영상
-              </E.Btn>
-              <E.Btn data-active={activeButton === "notice"} onClick={() => setActiveButton("notice")}>
-                공고
-              </E.Btn>
-            </E.Container>
-            <E.Content>{activeButton === "video" ? <Video query={query} /> : <Notice />}</E.Content>
-            <Footer />
-          </E.Education>
-=======
+          <Header />
           <E.Container>
             <E.Btn data-active={activeButton === "video"} onClick={() => setActiveButton("video")}>
               영상
@@ -42,7 +27,6 @@ function Education() {
           </E.Container>
           <E.Content>{activeButton === "video" ? <Video /> : <Notice />}</E.Content>
           <Footer />
->>>>>>> ed7682812c8491352eabff63b8171a6bc8f82307
         </C.PageSpace>
       </C.Center>
     </C.Page>
