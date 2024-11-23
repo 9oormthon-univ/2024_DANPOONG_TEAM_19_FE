@@ -73,7 +73,7 @@ function MyPageS() {
     <MS.List>
       {items.map((item) => (
         <MS.ListItem key={item.productId}>
-          <MS.ListImg src={item.images?.[0]?.imageUrl || "/default-image.png"}></MS.ListImg>
+          <MS.ListImg src={item.imgUrl}></MS.ListImg>
           <MS.ListText>
             <MS.ListTitle>{item.title}</MS.ListTitle>
             <MS.ListMore src={More} onClick={() => openModalM(item.productId)}></MS.ListMore>

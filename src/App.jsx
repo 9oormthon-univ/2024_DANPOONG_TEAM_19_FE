@@ -16,6 +16,7 @@ import Order from "./pages/MyPage/Order";
 import SearchE from "./pages/Education/SearchE";
 import Search from "./pages/Home/Search";
 import Alarm from "./pages/Home/Alarm.jsx";
+import Explain from "./pages/Login/Explain.jsx";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/education/search" element={<SearchE />} />
           <Route path="/search" element={<Search />} />
           <Route path="/alarm" element={<Alarm />} />
+          <Route path="/explain" element={<Explain />} />
         </Routes>
       </div>
     </BrowserRouter>

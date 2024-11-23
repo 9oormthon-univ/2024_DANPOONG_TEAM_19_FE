@@ -69,7 +69,7 @@ const ModalProgressB = ({ onClose, isModalVisibleP, purchaseId, title }) => {
           <MP.ModalContent>
             <MP.ModalHeader>
               <MP.Profile>
-                <MP.ProfileImg src={purchaseData.productImage} />
+                <MP.ProfileImg src={purchaseData.imgUrl} />
                 <MP.ProfileName>{title}</MP.ProfileName>
               </MP.Profile>
               <MP.Close src={Delete} alt="delete" onClick={onClose}></MP.Close>

@@ -36,7 +36,7 @@ const ModalProgressS = ({ onClose, isModalVisibleP, purchaseId, consumerName }) 
         // 상태 값 매핑 및 activeStep 계산
         const stepLabel = statusMapping[data.status]; // 상태 값을 단계 이름으로 변환
         console.log("data.status 값:", data.status);
-        console.log("변환된 단계 이름:", stepLabel);
+        console.log("현재 단계 이름:", stepLabel);
 
         if (stepLabel) {
           const statusIndex = steps.indexOf(stepLabel); // `steps`에서 인덱스 찾기
@@ -70,6 +70,7 @@ const ModalProgressS = ({ onClose, isModalVisibleP, purchaseId, consumerName }) 
 
     try {
       // PATCH 요청: purchaseId와 status 전달
+      console.log("다음단계: ", nextStatus);
       const response = await axiosInstance.patch(`/api/core/mypage/${purchaseId}/${nextStatus}`);
       console.log("단계 업데이트 성공:", response.data);
 
