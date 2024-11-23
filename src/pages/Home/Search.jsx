@@ -4,6 +4,7 @@ import * as C from "../../styles/CommonStyle";
 import * as S from "../../styles/Home/SearchStyle";
 import Delete from "../../assets/images/Common/delete.png";
 import SearchHeader from "../../components/searchHeader";
+import Footer from "../../components/Footer";
 
 function Search() {
   const [inputValue, setInputValue] = useState("");
@@ -58,6 +59,7 @@ function Search() {
               ))}
             </S.SearchContent>
           </S.Search>
+          <Footer />
         </C.PageSpace>
       </C.Center>
     </C.Page>
