@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import * as C from "../../styles/CommonStyle";
 import * as H from "../../styles/Home/HomeStyle";
 import Footer from "../../components/Footer";
@@ -11,23 +11,29 @@ import useAllProducts from "../../hooks/Home/useAllProducts";
 function Home() {
   const { products, loading, error } = useAllProducts();
 
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+  const keyword = queryParams.get("keyword") || "";
+
+  const filteredProducts = products.filter(product =>
+    product.title.toLowerCase().includes(keyword.toLowerCase())
+  );
+
   return (
     <C.Page>
       <Header />
       <C.Center>
         <C.PageSpace>
           <H.GridContainer>
-            {products.map((product) => (
-              <Link to={`/detail/${product.productId}`} key={product.productId}>
-                {" "}
-                {/* productId로 링크 */}
+            {filteredProducts.map((product) => ( // Use filteredProducts here
+              <Link to={`/detail/${product.productId}`} key={product.productId}> {/* productId로 링크 */}
                 <H.Box>
                   <H.Image src={product.imgUrl} alt={product.title} />
                   <H.Description>
                     <H.TopRow>
                       <H.Name>{product.title}</H.Name>
                       <H.Uploader>{product.sellerName}</H.Uploader>
-                      <H.MoreButton>⋮</H.MoreButton>
                     </H.TopRow>
                     <H.BottomRow>
                       <H.Price>{product.price.toLocaleString()}원</H.Price>

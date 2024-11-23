@@ -33,6 +33,29 @@ function Detail() {
   const [comment, setComment] = useState("");
   const [isSecret, setIsSecret] = useState(false); // 비밀글 여부
   const [selectedCommentId, setSelectedCommentId] = useState(null);
+  const [userInfo, setUserInfo] = useState("");
+
+const fetchComments = async () => {
+  try {
+    const response = await axiosInstance.get(`/api/core/product/${productId}/comments`);
+    setComments(response.data || []);
+  } catch (err) {
+    console.error("댓글 데이터를 가져오는 데 실패했습니다.", err);
+  }
+};
+
+const getUserInfo = async () => {
+  try {
+    const response = await axiosInstance.get("/api/core/mypage/info");
+    setUserInfo(response.data); // 사용자 정보 상태 업데이트
+  } catch (error) {
+    console.error("사용자 정보를 가져오는 중 오류가 발생했습니다:", error);
+  }
+};
+
+useEffect(() => {
+  getUserInfo(); // 사용자 정보 가져오기
+}, []);
 
   useEffect(() => {
     setComments(initialComments);
@@ -81,12 +104,15 @@ function Detail() {
       setComments((prevComments) =>
         prevComments.filter((comment) => comment.commentId !== commentId)
       );
-      alert("댓글이 성공적으로 삭제되었습니다.");
     } catch (err) {
       console.error("댓글 삭제 실패:", err);
       alert("댓글 삭제 중 오류가 발생했습니다.");
     }
   };
+
+  useEffect(() => {
+    getUserInfo(); // 사용자 정보 가져오기
+  }, []);
   
   
 
@@ -114,7 +140,7 @@ function Detail() {
       setSelectedCommentId(commentId); // 답글 펼치기
     }
   };
-
+  
   const handleCommentSubmit = async () => {
     if (!comment.trim()) {
       alert("댓글 내용을 입력하세요.");
@@ -122,10 +148,17 @@ function Detail() {
     }
   
     try {
-      const newComment = await postComment(comment, isSecret); // 새로운 댓글 작성
-      setComments((prevComments) => [...prevComments, newComment]); // 로컬 상태 업데이트
+      const newComment = {
+        content: comment,
+        username: userInfo, // 작성자 정보 포함
+        isSecret, // 비밀글 여부
+      };
+  
+      await axiosInstance.post(`/api/core/product/${productId}/comment`, newComment);
       setComment(""); // 입력창 초기화
       setIsSecret(false); // 비밀글 체크박스 초기화
+      fetchComments(); // 댓글 목록 다시 가져오기
+      window.location.reload(); // 페이지 새로고침
     } catch (err) {
       console.error("댓글 등록 실패:", err);
       alert("댓글 등록 중 오류가 발생했습니다.");
@@ -162,7 +195,6 @@ function Detail() {
               <D.ProfileContainer>
                 <D.ProfileImage src={userProfile} alt="사용자 프로필" />
                 <D.UserName>{productDetail?.sellerName}</D.UserName>
-                <D.DButton onClick={handleModalToggle}>...</D.DButton>
                 <BottomModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -185,7 +217,7 @@ function Detail() {
                 <D.CommentBox isHighlighted={selectedCommentId === comment.commentId}>
                   <D.ProfileContainer>
                     <D.ProfileImage src={userProfile} alt="사용자 프로필" />
-                    <D.UserName>{comment.username}</D.UserName>
+                    <D.UserName>{userInfo}</D.UserName>
                     <D.DButton onClick={() => handleModalToggle(comment.commentId)}>...</D.DButton>
                   </D.ProfileContainer>
                   <D.CommentText>{comment.content}</D.CommentText>
@@ -217,7 +249,7 @@ function Detail() {
             <D.CommentInputBox>
               <D.ProfileContainer>
                 <D.ProfileImage src={userProfile} alt="사용자 프로필" />
-                <D.UserName>김옥순</D.UserName>
+                <D.UserName>{userInfo}</D.UserName>
               </D.ProfileContainer>
               <D.CommentInputRow>
                 <D.CommentInput

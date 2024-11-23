@@ -65,9 +65,28 @@ export const Description = styled.div`
 export const TopRow = styled.div`
   display: flex;
   justify-content: space-between; 
-  align-items: center; 
-  width: 100%; 
+  align-items: center;
+  width: 100%;
   font-size: 1px;
+`;
+
+export const Name = styled.span`
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  flex-grow: 1; 
+`;
+
+export const Uploader = styled.span`
+  font-size: 10px;
+  color: #666;
+  margin-right: 25px; 
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 `;
 
 export const NameAndUploader = styled.span`
@@ -77,13 +96,6 @@ export const NameAndUploader = styled.span`
   flex-grow: 1;
 `;
 
-export const MoreButton = styled.button`
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0; 
-`;
-
 
 export const BottomRow = styled.div`
   font-size: 16px;
@@ -91,17 +103,6 @@ export const BottomRow = styled.div`
   margin-top: 10%;
 `;
 
-export const Name = styled.span`
-  font-size: 16px; 
-  font-weight: bold; 
-  color: #333; 
-`;
-
-export const Uploader = styled.span`
-  font-size: 14px; 
-  color: #666; 
-  margin-left: 30%; 
-`;
 
 export const Price = styled.span`
   font-size: 18px; 
