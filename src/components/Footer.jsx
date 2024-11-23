@@ -31,8 +31,8 @@ const Footer = () => {
   const handleMenuClick = (menu) => {
     if (menu !== activeMenu) {
       setActiveMenu(menu);
-      navigate(`/${menu}`);
     }
+    navigate(`/${menu}`); // 무조건 이동
   };
 
   return (
