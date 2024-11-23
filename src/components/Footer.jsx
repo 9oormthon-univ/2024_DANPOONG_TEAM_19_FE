@@ -10,19 +10,28 @@ import myPageDefault from "../assets/images/Footer/mypageD.svg";
 import myPageActive from "../assets/images/Footer/mypageA.svg";
 
 const Footer = () => {
-  const [activeMenu, setActiveMenu] = useState("home"); 
-  const navigate = useNavigate(); 
-  const location = useLocation(); 
+  const [activeMenu, setActiveMenu] = useState("home");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const path = location.pathname.replace("/", ""); 
-    setActiveMenu(path || "home"); 
-  }, [location.pathname]); 
+    const path = location.pathname; 
+
+    if (path.startsWith("/home") || path === "/search") {
+      setActiveMenu("home"); 
+    } else if (path.startsWith("/education")) {
+      setActiveMenu("education"); 
+    } else if (path.startsWith("/mypage")) {
+      setActiveMenu("mypage"); 
+    } else {
+      setActiveMenu(""); 
+    }
+  }, [location.pathname]);
 
   const handleMenuClick = (menu) => {
-    if (menu !== activeMenu) { 
-      setActiveMenu(menu); 
-      navigate(`/${menu}`); 
+    if (menu !== activeMenu) {
+      setActiveMenu(menu);
+      navigate(`/${menu}`);
     }
   };
 
