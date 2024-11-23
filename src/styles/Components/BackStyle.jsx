@@ -9,9 +9,16 @@ export const BackButton = styled.button`
   border: none;
   padding: 0;
   margin: 0;
+
+    @media (min-width: 1024px) {
+  top:8%;
+  left: 38%;
+  }
 `;
+
 
 export const BackImage = styled.img`
   width: 24px;
   height: 25px;
 `;
+

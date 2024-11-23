@@ -14,6 +14,12 @@ export const FooterContainer = styled.footer`
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
   z-index: 998;
   height: 80px;
+
+      @media (min-width: 1024px) {
+  margin-left: 35%;
+  width: 30%;
+
+  }
 `;
 
 export const MenuItem = styled.img`

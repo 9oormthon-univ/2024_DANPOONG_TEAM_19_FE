@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import useFetchProductDetail from "../../hooks/Home/useFetchProductDetail";
 import useFetchReplies from "../../hooks/Home/useFetchReplies";
+import usePostComment from "../../hooks/Home/usePostComment";
 import { axiosInstance } from "../../axios/axios_instance";
 
 import Back from "../../components/back";
@@ -22,40 +23,85 @@ import userProfile from "../../assets/images/user.png";
 
 function Detail() {
   const { productId } = useParams(); // URL에서 productId 가져오기
-  const { productDetail, comments, loading, error } = useFetchProductDetail(productId);
+  const { productDetail, comments: initialComments, loading, error } = useFetchProductDetail(productId);
+  const { postComment, loading: postLoading, error: postError } = usePostComment(productId);
 
+  const [comments, setComments] = useState([]); // 로컬에서 관리할 댓글 상태
   const [repliesData, setRepliesData] = useState({}); // 모든 댓글의 답글 데이터를 저장
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [comment, setComment] = useState("");
+  const [isSecret, setIsSecret] = useState(false); // 비밀글 여부
   const [selectedCommentId, setSelectedCommentId] = useState(null);
 
-  // 모든 댓글의 답글 데이터를 가져오는 함수
+  useEffect(() => {
+    setComments(initialComments);
+  }, [initialComments]);
+
   useEffect(() => {
     const fetchRepliesForComments = async () => {
       try {
         const repliesMap = {};
         for (const comment of comments) {
+          const mainCommentId = comment.commentId || 1; // 기본값 1 설정
           const response = await axiosInstance.get(
             `/api/core/product/${productId}/comment`,
-            { params: { mainCommentId: comment.commentId } }
+            { params: { mainCommentId } }
           );
-          repliesMap[comment.commentId] = response.data?.data || [];
+          repliesMap[mainCommentId] = response.data?.data || [];
         }
-        setRepliesData(repliesMap); // 모든 답글 데이터를 상태에 저장
+        setRepliesData(repliesMap);
       } catch (err) {
         console.error("답글 데이터를 가져오는 데 실패했습니다.", err);
       }
     };
-
+  
     if (comments.length > 0) {
       fetchRepliesForComments();
     }
   }, [productId, comments]);
 
-  const handleModalToggle = () => {
-    setIsModalOpen((prev) => !prev);
+  useEffect(() => {
+    setComments(initialComments);
+  }, [initialComments]);
+
+  const handleDeleteComment = async (commentId) => {
+    const token = localStorage.getItem("token"); // Authorization 토큰 가져오기
+    console.log(`Authorization 토큰: ${token}`); // 토큰 로그 추가
+    console.log(`handleDeleteComment 실행: commentId=${commentId}`); // 로그 추가
+    
+    try {
+      console.log("삭제 요청 시작"); // 삭제 요청 시작 로그
+      await axiosInstance.delete(`/api/core/product/comment/${commentId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Authorization 헤더 추가
+        },
+      });
+      console.log("삭제 요청 성공"); // 삭제 요청 성공 로그
+      setComments((prevComments) =>
+        prevComments.filter((comment) => comment.commentId !== commentId)
+      );
+      alert("댓글이 성공적으로 삭제되었습니다.");
+    } catch (err) {
+      console.error("댓글 삭제 실패:", err);
+      alert("댓글 삭제 중 오류가 발생했습니다.");
+    }
   };
+  
+  
+
+  const handleModalToggle = (commentId) => {
+    console.log(`handleModalToggle 실행: commentId=${commentId}`); // 전달받은 commentId 확인
+    setSelectedCommentId(commentId); // 선택된 댓글 ID 설정
+    setIsModalOpen((prev) => !prev); // 모달 상태 토글
+  };
+  
+  {comments.map((comment) => (
+    <div key={comment.commentId}>
+      <D.DButton onClick={() => handleModalToggle(comment.commentId)}>...</D.DButton>
+    </div>
+  ))}
+  
 
   const handleConfirmModalToggle = () => {
     setIsConfirmModalOpen((prev) => !prev);
@@ -69,8 +115,23 @@ function Detail() {
     }
   };
 
-  if (loading) return <div>로딩 중...</div>;
-  if (error) return <div>에러 발생: {error}</div>;
+  const handleCommentSubmit = async () => {
+    if (!comment.trim()) {
+      alert("댓글 내용을 입력하세요.");
+      return;
+    }
+  
+    try {
+      const newComment = await postComment(comment, isSecret); // 새로운 댓글 작성
+      setComments((prevComments) => [...prevComments, newComment]); // 로컬 상태 업데이트
+      setComment(""); // 입력창 초기화
+      setIsSecret(false); // 비밀글 체크박스 초기화
+    } catch (err) {
+      console.error("댓글 등록 실패:", err);
+      alert("댓글 등록 중 오류가 발생했습니다.");
+    }
+  };
+  
 
   return (
     <D.Page>
@@ -82,7 +143,7 @@ function Detail() {
             <D.Title>{productDetail?.title}</D.Title>
             <D.Line />
 
-            {/* 이미지 슬라이더 */}
+            {/* 이미지 */}
             <D.SliderWrapper>
               <img
                 src={productDetail?.imgUrl}
@@ -102,7 +163,12 @@ function Detail() {
                 <D.ProfileImage src={userProfile} alt="사용자 프로필" />
                 <D.UserName>{productDetail?.sellerName}</D.UserName>
                 <D.DButton onClick={handleModalToggle}>...</D.DButton>
-                <BottomModal isOpen={isModalOpen} onClose={handleModalToggle} />
+                <BottomModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onDelete={handleDeleteComment}
+        commentId={selectedCommentId}
+      />
               </D.ProfileContainer>
               <D.DescriptionText>{productDetail?.content}</D.DescriptionText>
             </D.DescriptionBox>
@@ -120,6 +186,7 @@ function Detail() {
                   <D.ProfileContainer>
                     <D.ProfileImage src={userProfile} alt="사용자 프로필" />
                     <D.UserName>{comment.username}</D.UserName>
+                    <D.DButton onClick={() => handleModalToggle(comment.commentId)}>...</D.DButton>
                   </D.ProfileContainer>
                   <D.CommentText>{comment.content}</D.CommentText>
                 </D.CommentBox>
@@ -136,6 +203,7 @@ function Detail() {
                         <D.ProfileContainer>
                           <D.ProfileImage src={userProfile} alt="사용자 프로필" />
                           <D.UserName>{reply.username}</D.UserName>
+                          <D.DButton onClick={handleModalToggle}>...</D.DButton>
                         </D.ProfileContainer>
                         <D.CommentText>{reply.content}</D.CommentText>
                       </D.ReplyBox>
@@ -161,10 +229,20 @@ function Detail() {
                 <D.PostIcon
                   src={post}
                   alt="Post Comment"
-                  onClick={() => console.log("댓글 작성:", comment)}
+                  onClick={handleCommentSubmit}
                 />
               </D.CommentInputRow>
             </D.CommentInputBox>
+            {/* 비밀글 체크박스 */}
+            <D.SecretOptionContainer>
+              <D.SecretCheckbox
+                type="checkbox"
+                id="secret"
+                checked={isSecret}
+                onChange={(e) => setIsSecret(e.target.checked)}
+              />
+              <D.SecretLabel htmlFor="secret">비밀글이에요</D.SecretLabel>
+            </D.SecretOptionContainer>
           </D.Wrapper>
         </D.PageSpace>
       </D.Center>
