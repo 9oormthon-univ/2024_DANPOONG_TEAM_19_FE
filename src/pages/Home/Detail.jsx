@@ -60,11 +60,48 @@ function Detail() {
       fetchRepliesForComments();
     }
   }, [productId, comments]);
+
+  useEffect(() => {
+    setComments(initialComments);
+  }, [initialComments]);
+
+  const handleDeleteComment = async (commentId) => {
+    const token = localStorage.getItem("token"); // Authorization 토큰 가져오기
+    console.log(`Authorization 토큰: ${token}`); // 토큰 로그 추가
+    console.log(`handleDeleteComment 실행: commentId=${commentId}`); // 로그 추가
+    
+    try {
+      console.log("삭제 요청 시작"); // 삭제 요청 시작 로그
+      await axiosInstance.delete(`/api/core/product/comment/${commentId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Authorization 헤더 추가
+        },
+      });
+      console.log("삭제 요청 성공"); // 삭제 요청 성공 로그
+      setComments((prevComments) =>
+        prevComments.filter((comment) => comment.commentId !== commentId)
+      );
+      alert("댓글이 성공적으로 삭제되었습니다.");
+    } catch (err) {
+      console.error("댓글 삭제 실패:", err);
+      alert("댓글 삭제 중 오류가 발생했습니다.");
+    }
+  };
+  
   
 
-  const handleModalToggle = () => {
-    setIsModalOpen((prev) => !prev);
+  const handleModalToggle = (commentId) => {
+    console.log(`handleModalToggle 실행: commentId=${commentId}`); // 전달받은 commentId 확인
+    setSelectedCommentId(commentId); // 선택된 댓글 ID 설정
+    setIsModalOpen((prev) => !prev); // 모달 상태 토글
   };
+  
+  {comments.map((comment) => (
+    <div key={comment.commentId}>
+      <D.DButton onClick={() => handleModalToggle(comment.commentId)}>...</D.DButton>
+    </div>
+  ))}
+  
 
   const handleConfirmModalToggle = () => {
     setIsConfirmModalOpen((prev) => !prev);
@@ -126,7 +163,12 @@ function Detail() {
                 <D.ProfileImage src={userProfile} alt="사용자 프로필" />
                 <D.UserName>{productDetail?.sellerName}</D.UserName>
                 <D.DButton onClick={handleModalToggle}>...</D.DButton>
-                <BottomModal isOpen={isModalOpen} onClose={handleModalToggle} />
+                <BottomModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onDelete={handleDeleteComment}
+        commentId={selectedCommentId}
+      />
               </D.ProfileContainer>
               <D.DescriptionText>{productDetail?.content}</D.DescriptionText>
             </D.DescriptionBox>
@@ -144,7 +186,7 @@ function Detail() {
                   <D.ProfileContainer>
                     <D.ProfileImage src={userProfile} alt="사용자 프로필" />
                     <D.UserName>{comment.username}</D.UserName>
-                    <D.DButton onClick={handleModalToggle}>...</D.DButton>
+                    <D.DButton onClick={() => handleModalToggle(comment.commentId)}>...</D.DButton>
                   </D.ProfileContainer>
                   <D.CommentText>{comment.content}</D.CommentText>
                 </D.CommentBox>
