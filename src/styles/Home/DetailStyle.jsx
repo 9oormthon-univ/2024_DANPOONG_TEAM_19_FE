@@ -47,6 +47,7 @@ export const Title = styled.h1`
   font-weight: bold;
   text-align: center;
   color: #333;
+  font-family: EliceDigitalBaeum_Bold;
 `;
 
 export const Line = styled.hr`
@@ -59,18 +60,28 @@ export const Line = styled.hr`
 `;
 
 export const SliderWrapper = styled.div`
+  position: relative;
   display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 0 16px;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  width: 100%; /* 부모 요소에 맞게 너비 확장 */
+
+  margin: 0 auto; /* 요소를 중앙으로 이동 */
+  text-align: center; /* 내부 컨텐츠 텍스트 중앙 정렬 */
 `;
 
 export const SwiperContainer = styled.div`
-  display: flex;
-  justify-content: center; 
-  align-items: center;
   width: 100%; 
+  height: 100px; 
+  margin-top: 20px; 
 `;
+export const SlideImage = styled.img`
+  width: 100%; 
+  height: 100px;
+  display: block; 
+  
+`;
+
 
 
 export const Button = styled.button`
@@ -84,7 +95,7 @@ export const Button = styled.button`
   background-color: #ee8814;
   color: white;
   transition: background-color 0.3s ease;
-
+  font-family: EliceDigitalBaeum_Bold;
   &:hover {
     background-color: #ffffff;
     color: #ee8814;
@@ -121,6 +132,7 @@ export const UserName = styled.div`
   font-size: 14px;
   font-weight: bold;
   color: #333;
+  font-family: EliceDigitalBaeum_Bold;
 `;
 
 export const DButton = styled.button`
@@ -142,6 +154,7 @@ export const DButton = styled.button`
   height: 30px;
   border-radius: 50%;
   transition: background-color 0.2s ease;
+  
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.1); 
@@ -156,6 +169,7 @@ export const DescriptionText = styled.div`
   white-space: pre-line; 
   overflow: hidden;
   text-overflow: ellipsis;
+   font-family: EliceDigitalBaeum_Regular;
 `;
 
 export const CommentBox = styled.div.attrs((props) => ({
@@ -181,6 +195,7 @@ export const CommentText = styled.div`
   white-space: pre-line; 
   overflow: hidden;
   text-overflow: ellipsis;
+   font-family: EliceDigitalBaeum_Regular
 `;
 
 export const CommentHeader = styled.div`
@@ -268,6 +283,7 @@ export const CommentInput = styled.input`
   font-size: 12px;
   color: #000;
   background-color: transparent;
+  font-family: EliceDigitalBaeum_Regular
 `;
 
 export const PostIcon = styled.img`

@@ -7,9 +7,15 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    // S3 Presigned URL 요청 확인
+    if (!config.url.includes('s3.ap-northeast-2.amazonaws.com')) {
+      const token = localStorage.getItem("token");
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    } else {
+      // S3 Presigned URL 요청인 경우 Authorization 헤더 제거
+      delete config.headers.Authorization;
     }
     return config;
   },

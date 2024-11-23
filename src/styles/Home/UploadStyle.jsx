@@ -50,6 +50,7 @@ export const Title = styled.h1`
   font-weight: bold;
   text-align: center;
   color: #333;
+  font-family: EliceDigitalBaeum_Bold;
 `;
 
 export const Line = styled.hr`
@@ -101,6 +102,8 @@ export const Input = styled.input`
   height: 70px;
   font-size: 18px;
   background-color: #ffffff;
+  font-family: EliceDigitalBaeum_Regular
+  color: #000000;
 `;
 
 export const PriceButton = styled.div`
@@ -124,10 +127,10 @@ export const TextArea = styled.textarea`
   border-radius: 20px;
   padding: 10px;
   border: 1px solid #B2B2B2;
- letter-spacing: -2px;
  font-size: 18px;
  overflow-y: hidden;
  background-color: #ffffff;
+ font-family: EliceDigitalBaeum_Regular
 `;
 
 export const CancelButton = styled.button`
@@ -152,11 +155,13 @@ export const CompleteButton = styled.button`
 export const PriceLabel = styled.span`
   color: #333;
   font-size: 18px;
+  font-family: EliceDigitalBaeum_Regular
 `;
 
 export const PriceValue = styled.span`
   color: #333;
   font-size: 18px;
+  font-family: EliceDigitalBaeum_Regular
 `;
 
 export const ButtonRow = styled.div`
@@ -192,4 +197,5 @@ export const UserName = styled.div`
   font-size: 14px;
   font-weight: bold;
   color: #333;
+  font-family: EliceDigitalBaeum_Bold;
 `;
