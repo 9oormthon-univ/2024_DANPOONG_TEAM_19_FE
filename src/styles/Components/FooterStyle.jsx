@@ -15,25 +15,23 @@ export const FooterContainer = styled.footer`
   z-index: 998;
   height: 80px;
 
-      @media (min-width: 1024px) {
-  margin-left: 39%;
-  width: 400px;
-
+  @media (min-width: 1024px) {
+    width: 400px;
   }
 `;
 
 export const MenuItem = styled.img`
   cursor: pointer;
   transition: transform 0.2s;
-  height: 30px; 
+  height: 30px;
   width: 40px;
-  object-fit: contain; 
+  object-fit: contain;
 `;
 
 export const MenuItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   gap: 5px;
 `;
 

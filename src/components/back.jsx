@@ -15,7 +15,6 @@ function Back() {
       <B.BackButton onClick={handleBack}>
         <B.BackImage src={backIcon} alt="뒤로 가기" />
       </B.BackButton>
-      <B.Separator />
     </>
   );
 }

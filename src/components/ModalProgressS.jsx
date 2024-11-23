@@ -15,6 +15,7 @@ const statusMapping = {
 };
 
 const steps = Object.values(statusMapping); // 단계 이름 리스트 생성
+const statuses = Object.keys(statusMapping); // 상태 값 리스트 생성
 
 const ModalProgressS = ({ onClose, isModalVisibleP, purchaseId, consumerName }) => {
   const [activeStep, setActiveStep] = useState(0);
@@ -54,6 +55,34 @@ const ModalProgressS = ({ onClose, isModalVisibleP, purchaseId, consumerName }) 
 
     fetchPurchaseData();
   }, [purchaseId]);
+
+  const handleStepClick = async (index) => {
+    if (index !== activeStep + 1) {
+      console.warn("현재 단계의 다음 단계만 이동 가능합니다.");
+      return;
+    }
+
+    const nextStatus = statuses[index]; // 다음 단계의 상태 값
+    if (!nextStatus) {
+      console.error("다음 단계의 상태 값이 유효하지 않습니다.");
+      return;
+    }
+
+    try {
+      // PATCH 요청: purchaseId와 status 전달
+      const response = await axiosInstance.patch(`/api/core/mypage/${purchaseId}/${nextStatus}`);
+      console.log("단계 업데이트 성공:", response.data);
+
+      // UI 업데이트
+      setActiveStep(index); // 활성 스텝 업데이트
+      setPurchaseData((prevData) => ({
+        ...prevData,
+        status: nextStatus, // 상태 업데이트
+      }));
+    } catch (error) {
+      console.error("단계 업데이트 중 오류가 발생했습니다:", error.response?.data || error.message);
+    }
+  };
 
   const progressWidths = [10, 26, 42, 58, 76, 100];
   const progressWidth = `${progressWidths[activeStep]}%`;
