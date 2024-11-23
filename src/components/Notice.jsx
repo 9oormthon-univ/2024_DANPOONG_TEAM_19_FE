@@ -1,6 +1,6 @@
 import React from "react";
 import * as N from "../styles/Components/NoticeStyle";
-import More from "../assets/images/Common/more.png";
+
 import Sample1 from "../assets/images/Education/sample1.png";
 import Sample2 from "../assets/images/Education/sample2.jpg";
 import Sample3 from "../assets/images/Education/sample3.png";
@@ -55,7 +55,6 @@ const Notice = () => {
           <N.ListImg src={notice.img} alt={`Notice ${index}`} />
           <N.ListText>
             <N.ListTitle>{notice.title}</N.ListTitle>
-            <N.ListMore src={More} alt="more" />
           </N.ListText>
         </N.ListItem>
       ))}

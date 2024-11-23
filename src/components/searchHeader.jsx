@@ -1,19 +1,9 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import * as S from "../styles/Components/searchHeaderStyle";
 import search from "../assets/images/Header/search.svg";
 import alarm from "../assets/images/Header/alarm.svg";
 
-const SearchHeader = () => {
-  const [inputValue, setInputValue] = useState("");
-  const navigate = useNavigate();
-
-  const handleSearch = () => {
-    if (inputValue.trim()) {
-      navigate(`/education?query=${encodeURIComponent(inputValue)}`);
-    }
-  };
-
+const SearchHeader = ({ inputValue, setInputValue, onSearch }) => {
   return (
     <>
       <S.HeaderContainer>
@@ -23,7 +13,7 @@ const SearchHeader = () => {
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="검색어를 입력하세요..."
           />
-          <S.SearchIcon src={search} alt="Search Icon" onClick={handleSearch} />
+          <S.SearchIcon src={search} alt="Search Icon" onClick={onSearch} />
         </S.SearchContainer>
         <S.RightIcons>
           <S.Icon src={alarm} alt="Alarm" />
