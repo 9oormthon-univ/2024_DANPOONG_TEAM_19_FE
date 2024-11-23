@@ -47,8 +47,11 @@ const fetchComments = async () => {
 const getUserInfo = async () => {
   try {
     const response = await axiosInstance.get("/api/core/mypage/info");
-    console.log("유저 정보 (getUserInfo):", response.data); // 유저 정보 확인
-    setUserInfo(response.data); // 사용자 정보 상태 업데이트
+    console.log("API 전체 응답 데이터 (getUserInfo):", response.data); // 전체 데이터 로그
+
+    // 상태를 문자열로 설정
+    setUserInfo(response.data);
+    console.log("setUserInfo 후 상태:", response.data); // 상태 확인
   } catch (error) {
     console.error("사용자 정보를 가져오는 중 오류가 발생했습니다:", error);
   }
@@ -143,6 +146,8 @@ useEffect(() => {
     }
   };
   
+  
+ 
 
   const handleCommentSubmit = async () => {
     if (!comment.trim()) {
@@ -150,30 +155,29 @@ useEffect(() => {
       return;
     }
   
+    console.log("현재 유저 정보 (handleCommentSubmit):", userInfo); // 유저 정보 로그
+  
     const newComment = {
       content: comment,
-      username: userInfo.username || "익명", // 로그인한 사용자 이름 사용
+      username: userInfo || "익명", // 로그인한 사용자 이름 사용
       isSecret, // 비밀글 여부
     };
   
     console.log("작성된 댓글 데이터:", newComment); // 작성한 댓글 데이터 로그
-    console.log("현재 유저 정보:", userInfo); // 현재 유저 정보 로그
-    console.log("현재 productId:", productId); // productId 로그 추가
   
     try {
       const response = await axiosInstance.post(`/api/core/product/${productId}/comment`, newComment);
       console.log("댓글 등록 응답 데이터:", response.data); // 댓글 등록 응답 데이터 로그
-  
-      // 댓글 목록 갱신
       setComment(""); // 입력창 초기화
       setIsSecret(false); // 비밀글 체크박스 초기화
       fetchComments(); // 댓글 목록 다시 가져오기
-      // window.location.reload(); // 페이지 새로고침
+      window.location.reload(); // 페이지 새로고침
     } catch (err) {
       console.error("댓글 등록 실패:", err);
       alert("댓글 등록 중 오류가 발생했습니다.");
     }
   };
+  
   
 
   return (
@@ -265,20 +269,20 @@ useEffect(() => {
 {/* 댓글 목록 */}
 {comments.map((comment) => (
   <div key={comment.commentId}>
-    <D.CommentBox isHighlighted={selectedCommentId === comment.commentId}>
-      <D.ProfileContainer>
-        <D.ProfileImage src={userProfile} alt="사용자 프로필" />
-        {/* 댓글 작성자의 이름 표시 */}
-        <D.UserName>{comment.username || userInfo.username || "익명"}</D.UserName>
+  <D.CommentBox isHighlighted={selectedCommentId === comment.commentId}>
+    <D.ProfileContainer>
+      <D.ProfileImage src={userProfile} alt="사용자 프로필" />
+      {/* 댓글 작성자의 이름 표시 */}
+      <D.UserName>{comment.username || "익명"}</D.UserName>
 
-        <D.DButton onClick={() => handleModalToggle(comment.commentId)}>...</D.DButton>
-      </D.ProfileContainer>
-      <D.CommentText>{comment.content}</D.CommentText>
-    </D.CommentBox>
-    <D.ReplyHeader onClick={() => handleReplyToggle(comment.commentId)}>
-      <D.ReplyIcon src={arrow} alt="Reply Icon" />
-      <D.ReplyText>{(repliesData[comment.commentId] || []).length} 답글</D.ReplyText>
-    </D.ReplyHeader>
+      <D.DButton onClick={() => handleModalToggle(comment.commentId)}>...</D.DButton>
+    </D.ProfileContainer>
+    <D.CommentText>{comment.content}</D.CommentText>
+  </D.CommentBox>
+  <D.ReplyHeader onClick={() => handleReplyToggle(comment.commentId)}>
+    <D.ReplyIcon src={arrow} alt="Reply Icon" />
+    <D.ReplyText>{(repliesData[comment.commentId] || []).length} 답글</D.ReplyText>
+  </D.ReplyHeader>
 
     {/* 답글 */}
     {selectedCommentId === comment.commentId && (
@@ -304,7 +308,7 @@ useEffect(() => {
             <D.CommentInputBox>
               <D.ProfileContainer>
                 <D.ProfileImage src={userProfile} alt="사용자 프로필" />
-                <D.UserName>{userInfo}</D.UserName>
+                <D.UserName>{userInfo || "익명"}</D.UserName>
               </D.ProfileContainer>
               <D.CommentInputRow>
                 <D.CommentInput
