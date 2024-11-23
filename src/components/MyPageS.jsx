@@ -20,7 +20,7 @@ function MyPageS() {
     try {
       const response = await axiosInstance.get("/api/core/mypage/allproduct");
       setItems(response.data);
-      console.log("상품 데이터:", response.data);
+      //console.log("상품 데이터:", response.data);
     } catch (error) {
       console.error("데이터를 가져오는 중 오류가 발생했습니다:", error);
     }
@@ -31,7 +31,7 @@ function MyPageS() {
   }, []);
 
   const openModalD = (productId) => {
-    console.log("선택된 productId:", productId);
+    //console.log("선택된 productId:", productId);
     setSelectedProductId(productId);
     setIsModalOpenD(true);
     setIsModalVisibleD(true);
@@ -46,7 +46,7 @@ function MyPageS() {
   };
 
   const openModalM = (productId) => {
-    console.log("선택된 productId:", productId);
+    //console.log("선택된 productId:", productId);
     setSelectedProductId(productId);
     setIsModalOpenM(true);
     setIsModalVisibleM(true);
@@ -65,7 +65,7 @@ function MyPageS() {
   };
 
   const handleAsk = (productId) => {
-    console.log("수정으로 이동 - productId:", productId);
+    //console.log("수정으로 이동 - productId:", productId);
     navigate(`/detail/${productId}`); // productId로 이동
   };
 

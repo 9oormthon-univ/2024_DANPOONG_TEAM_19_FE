@@ -17,7 +17,7 @@ function MyPage() {
     try {
       const response = await axiosInstance.get("/api/core/mypage/who");
       setUserType(response.data);
-      console.log(response.data);
+      //console.log(response.data);
     } catch (error) {
       console.error("사용자 타입을 가져오는 중 오류가 발생했습니다:", error);
     }
@@ -27,7 +27,7 @@ function MyPage() {
     try {
       const responseInfo = await axiosInstance.get("/api/core/mypage/info");
       setUserInfo(responseInfo.data);
-      console.log(responseInfo.data);
+      //console.log(responseInfo.data);
     } catch (error) {
       console.error("사용자 정보를 가져오는 중 오류가 발생했습니다:", error);
     }

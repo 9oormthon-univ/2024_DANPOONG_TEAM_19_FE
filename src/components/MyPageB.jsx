@@ -13,7 +13,7 @@ function MypageB() {
   const [selectedPurchaseTitle, setSelectedPurchaseTitle] = useState(null);
 
   const openModalP = (purchaseId, title) => {
-    console.log("선택된 purchaseId:", purchaseId);
+    //console.log("선택된 purchaseId:", purchaseId);
     setSelectedPurchaseId(purchaseId);
     setSelectedPurchaseTitle(title);
     setIsModalOpenP(true);
@@ -35,7 +35,7 @@ function MypageB() {
     try {
       const response = await axiosInstance.get("/api/core/mypage/allpurchase/consumer");
       setItems(response.data);
-      console.log("구매 데이터:", response.data);
+      //console.log("구매 데이터:", response.data);
     } catch (error) {
       console.error("데이터를 가져오는 중 오류가 발생했습니다:", error);
     }

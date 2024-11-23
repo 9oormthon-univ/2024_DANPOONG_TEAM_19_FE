@@ -13,7 +13,7 @@ const Video = () => {
     try {
       const response = await axiosInstance.get("/api/core/kakao/search");
       setItems(response.data.documents);
-      console.log("추천영상: ", response.data.documents);
+      //console.log("추천영상: ", response.data.documents);
     } catch (error) {
       console.error("추천 영상을 가져오는 중 오류가 발생했습니다:", error);
     }
@@ -26,7 +26,7 @@ const Video = () => {
         params: { query }, // 쿼리 파라미터 전달
       });
       setItems(response.data.documents);
-      console.log("검색결과: ", response.data.documents);
+      //console.log("검색결과: ", response.data.documents);
     } catch (error) {
       console.error("검색 결과를 가져오는 중 오류가 발생했습니다:", error);
     }
