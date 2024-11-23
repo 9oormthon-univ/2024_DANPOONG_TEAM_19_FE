@@ -78,6 +78,7 @@ export const Name = styled.span`
   overflow: hidden;
   text-overflow: ellipsis; 
   flex-grow: 1; 
+  font-family: EliceDigitalBaeum_Bold;
 `;
 
 export const Uploader = styled.span`
@@ -87,6 +88,7 @@ export const Uploader = styled.span`
   white-space: nowrap;
   overflow: hidden; 
   text-overflow: ellipsis; 
+  font-family: EliceDigitalBaeum_Regular;
 `;
 
 export const NameAndUploader = styled.span`
@@ -108,6 +110,7 @@ export const Price = styled.span`
   font-size: 18px; 
   font-weight: bold; 
   color: #1a1a1a; 
+    font-family: Number;
 `;
 
 export const UploadButton = styled.img`

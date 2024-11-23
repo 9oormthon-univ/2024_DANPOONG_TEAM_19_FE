@@ -47,11 +47,13 @@ const fetchComments = async () => {
 const getUserInfo = async () => {
   try {
     const response = await axiosInstance.get("/api/core/mypage/info");
+    console.log("유저 정보 (getUserInfo):", response.data); // 유저 정보 확인
     setUserInfo(response.data); // 사용자 정보 상태 업데이트
   } catch (error) {
     console.error("사용자 정보를 가져오는 중 오류가 발생했습니다:", error);
   }
 };
+
 
 useEffect(() => {
   getUserInfo(); // 사용자 정보 가져오기
@@ -141,24 +143,32 @@ useEffect(() => {
     }
   };
   
+
   const handleCommentSubmit = async () => {
     if (!comment.trim()) {
       alert("댓글 내용을 입력하세요.");
       return;
     }
   
-    try {
-      const newComment = {
-        content: comment,
-        username: userInfo, // 작성자 정보 포함
-        isSecret, // 비밀글 여부
-      };
+    const newComment = {
+      content: comment,
+      username: userInfo.username || "익명", // 로그인한 사용자 이름 사용
+      isSecret, // 비밀글 여부
+    };
   
-      await axiosInstance.post(`/api/core/product/${productId}/comment`, newComment);
+    console.log("작성된 댓글 데이터:", newComment); // 작성한 댓글 데이터 로그
+    console.log("현재 유저 정보:", userInfo); // 현재 유저 정보 로그
+    console.log("현재 productId:", productId); // productId 로그 추가
+  
+    try {
+      const response = await axiosInstance.post(`/api/core/product/${productId}/comment`, newComment);
+      console.log("댓글 등록 응답 데이터:", response.data); // 댓글 등록 응답 데이터 로그
+  
+      // 댓글 목록 갱신
       setComment(""); // 입력창 초기화
       setIsSecret(false); // 비밀글 체크박스 초기화
       fetchComments(); // 댓글 목록 다시 가져오기
-      window.location.reload(); // 페이지 새로고침
+      // window.location.reload(); // 페이지 새로고침
     } catch (err) {
       console.error("댓글 등록 실패:", err);
       alert("댓글 등록 중 오류가 발생했습니다.");
@@ -178,17 +188,57 @@ useEffect(() => {
 
             {/* 이미지 */}
             <D.SliderWrapper>
+  {productDetail?.imgUrl ? (
+    <Swiper
+      spaceBetween={50}
+      slidesPerView={1}
+      loop={true}
+      pagination={{
+        clickable: true,
+      }}
+      modules={[Pagination]}
+    >
+      {Array.isArray(productDetail.imgUrl) // imgUrl이 배열인지 확인
+        ? productDetail.imgUrl.map((image, index) => ( // 배열일 경우
+            <SwiperSlide key={index}>
               <img
-                src={productDetail?.imgUrl}
-                alt={productDetail?.title}
+                src={image}
+                alt={`Product Image ${index}`}
                 style={{
                   width: "321px",
                   height: "321px",
                   objectFit: "cover",
+                  objectPosition: "center center",
                   borderRadius: "10px",
                 }}
               />
-            </D.SliderWrapper>
+            </SwiperSlide>
+          ))
+        : [productDetail.imgUrl].map((image, index) => ( // 단일 값일 경우 배열로 변환 후 처리
+            <SwiperSlide key={index}>
+              <img
+                src={image}
+                alt={`Product Image ${index}`}
+                style={{
+                  width: "321px",
+                  height: "321px",
+                  objectFit: "cover",
+                  objectPosition: "center center",
+                  borderRadius: "10px",
+                }}
+              />
+            </SwiperSlide>
+          ))}
+    </Swiper>
+  ) : (
+    <div style={{ textAlign: "center", padding: "50px" }}>
+      이미지가 없습니다.
+    </div>
+  )}
+</D.SliderWrapper>
+
+
+
 
             {/* 제품 설명 */}
             <D.DescriptionBox>
@@ -211,39 +261,44 @@ useEffect(() => {
 
             <D.CommentHeader>댓글 {comments.length}</D.CommentHeader>
 
-            {/* 댓글 목록 */}
-            {comments.map((comment) => (
-              <div key={comment.commentId}>
-                <D.CommentBox isHighlighted={selectedCommentId === comment.commentId}>
-                  <D.ProfileContainer>
-                    <D.ProfileImage src={userProfile} alt="사용자 프로필" />
-                    <D.UserName>{userInfo}</D.UserName>
-                    <D.DButton onClick={() => handleModalToggle(comment.commentId)}>...</D.DButton>
-                  </D.ProfileContainer>
-                  <D.CommentText>{comment.content}</D.CommentText>
-                </D.CommentBox>
-                <D.ReplyHeader onClick={() => handleReplyToggle(comment.commentId)}>
-                  <D.ReplyIcon src={arrow} alt="Reply Icon" />
-                  <D.ReplyText>{(repliesData[comment.commentId] || []).length} 답글</D.ReplyText>
-                </D.ReplyHeader>
 
-                {/* 답글 */}
-                {selectedCommentId === comment.commentId && (
-                  <div>
-                    {(repliesData[comment.commentId] || []).map((reply) => (
-                      <D.ReplyBox key={reply.commentId}>
-                        <D.ProfileContainer>
-                          <D.ProfileImage src={userProfile} alt="사용자 프로필" />
-                          <D.UserName>{reply.username}</D.UserName>
-                          <D.DButton onClick={handleModalToggle}>...</D.DButton>
-                        </D.ProfileContainer>
-                        <D.CommentText>{reply.content}</D.CommentText>
-                      </D.ReplyBox>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+{/* 댓글 목록 */}
+{comments.map((comment) => (
+  <div key={comment.commentId}>
+    <D.CommentBox isHighlighted={selectedCommentId === comment.commentId}>
+      <D.ProfileContainer>
+        <D.ProfileImage src={userProfile} alt="사용자 프로필" />
+        {/* 댓글 작성자의 이름 표시 */}
+        <D.UserName>{comment.username || userInfo.username || "익명"}</D.UserName>
+
+        <D.DButton onClick={() => handleModalToggle(comment.commentId)}>...</D.DButton>
+      </D.ProfileContainer>
+      <D.CommentText>{comment.content}</D.CommentText>
+    </D.CommentBox>
+    <D.ReplyHeader onClick={() => handleReplyToggle(comment.commentId)}>
+      <D.ReplyIcon src={arrow} alt="Reply Icon" />
+      <D.ReplyText>{(repliesData[comment.commentId] || []).length} 답글</D.ReplyText>
+    </D.ReplyHeader>
+
+    {/* 답글 */}
+    {selectedCommentId === comment.commentId && (
+      <div>
+        {(repliesData[comment.commentId] || []).map((reply) => (
+          <D.ReplyBox key={reply.commentId}>
+            <D.ProfileContainer>
+              <D.ProfileImage src={userProfile} alt="사용자 프로필" />
+              {/* 답글 작성자의 이름 표시 */}
+              <D.UserName>{reply.username}</D.UserName>
+              <D.DButton onClick={handleModalToggle}>...</D.DButton>
+            </D.ProfileContainer>
+            <D.CommentText>{reply.content}</D.CommentText>
+          </D.ReplyBox>
+        ))}
+      </div>
+    )}
+  </div>
+))}
+
 
             {/* 댓글 입력 */}
             <D.CommentInputBox>
@@ -265,27 +320,19 @@ useEffect(() => {
                 />
               </D.CommentInputRow>
             </D.CommentInputBox>
-            {/* 비밀글 체크박스 */}
-            <D.SecretOptionContainer>
-              <D.SecretCheckbox
-                type="checkbox"
-                id="secret"
-                checked={isSecret}
-                onChange={(e) => setIsSecret(e.target.checked)}
-              />
-              <D.SecretLabel htmlFor="secret">비밀글이에요</D.SecretLabel>
-            </D.SecretOptionContainer>
           </D.Wrapper>
         </D.PageSpace>
       </D.Center>
 
       {/* 구매 확인 모달 */}
       {isConfirmModalOpen && (
-        <ModalConfirm
-          isModalVisibleD={isConfirmModalOpen}
-          onClose={handleConfirmModalToggle}
-        />
-      )}
+  <ModalConfirm
+    isModalVisibleD={isConfirmModalOpen}
+    onClose={handleConfirmModalToggle}
+    productId={productId} // productId를 전달
+  />
+)}
+
       <Footer />
     </D.Page>
   );

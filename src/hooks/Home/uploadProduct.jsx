@@ -43,17 +43,22 @@ const useProductUploader = () => {
           if (!presignedUrl) {
             throw new Error(`Presigned URL이 없습니다. 파일 인덱스: ${index}`);
           }
-  
+      
           console.log(`업로드 중인 파일 이름: ${file.name}`);
           console.log(`Presigned URL 요청 경로: ${presignedUrl}`);
-  
+      
           return axiosInstance.put(presignedUrl, file, {
-            headers: { "Content-Type": file.type },
+            headers: {
+              "Content-Type": file.type,
+              Authorization: undefined // Authorization 헤더를 제거
+            }
           }).then(() => {
             console.log(`S3 업로드 성공: ${presignedUrl}`);
           });
         })
       );
+      
+      
   
       console.log("======== 상품 업로드 완료 ========");
       return productResponse.data;
