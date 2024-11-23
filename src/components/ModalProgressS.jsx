@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { axiosInstance } from "../axios/axios_instance";
 import * as MP from "../styles/Components/ModalProgressStyle";
 import Delete from "../assets/images/Common/delete.png";
 import ProfileImg from "../assets/images/Mypage/profile.png";
@@ -15,7 +16,7 @@ const statusMapping = {
 
 const steps = Object.values(statusMapping); // 단계 이름 리스트 생성
 
-const ModalProgressS = ({ onClose, isModalVisibleP, purchaseId }) => {
+const ModalProgressS = ({ onClose, isModalVisibleP, purchaseId, consumerName }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [purchaseData, setPurchaseData] = useState(null);
 
@@ -70,7 +71,7 @@ const ModalProgressS = ({ onClose, isModalVisibleP, purchaseId }) => {
             <MP.ModalHeader>
               <MP.Profile>
                 <MP.ProfileImg src={ProfileImg} alt="profile"></MP.ProfileImg>
-                <MP.ProfileName>김옥순</MP.ProfileName>
+                <MP.ProfileName>{consumerName}</MP.ProfileName>
               </MP.Profile>
               <MP.Close src={Delete} alt="delete" onClick={onClose}></MP.Close>
             </MP.ModalHeader>
