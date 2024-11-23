@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   align-items: center;
   gap: 20px;
   width: 100%;
-  padding-top: 50%;
+  padding-top: 25%;
 `;
 
 export const FieldContainer = styled.div`
