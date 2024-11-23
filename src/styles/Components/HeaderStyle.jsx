@@ -9,8 +9,8 @@ export const HeaderContainer = styled.header`
   width: 100%;
   padding: 0 16px;
   box-sizing: border-box;
-  top: 5%;
-  
+  top: 40px;
+  background-color: #
     @media (min-width: 1024px) {
       max-width: 390px;
   }
@@ -35,7 +35,7 @@ export const Icon = styled.img`
 
 export const Separator = styled.div`
   position: absolute;
-  top: 10%;
+  top: 90px;
   width: 90%;
   height: 1px;
 
