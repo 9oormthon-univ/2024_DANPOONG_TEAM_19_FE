@@ -237,7 +237,7 @@ export const ReplyBox = styled.div`
   gap: 10px;
   border: 1px solid #b2b2b2;
   margin-top: 4%;
-  margin-left: 12%;
+  margin-left: 7%;
 `;
 
 export const CommentInputBox = styled.div`
