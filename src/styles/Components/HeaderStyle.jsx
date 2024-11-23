@@ -10,11 +10,16 @@ export const HeaderContainer = styled.header`
   padding: 0 16px;
   box-sizing: border-box;
   top: 5%;
+  
+    @media (min-width: 1024px) {
+      max-width: 30%;
+  }
 `;
 
 export const Logo = styled.img`
   width: 118px;
   height: 25px;
+  
 `;
 
 export const RightIcons = styled.div`
@@ -32,7 +37,10 @@ export const Separator = styled.div`
   position: absolute;
   top: 10%;
   width: 90%;
-
   height: 1px;
+
   background-color: #e2e2e2;
+    @media (min-width: 1024px) {
+ width: 30%;
+  }
 `;
