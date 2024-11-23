@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
-  position: fixed;
+  position: absolute;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,7 +12,7 @@ export const HeaderContainer = styled.header`
   top: 5%;
   
     @media (min-width: 1024px) {
-      max-width: 20%;
+      max-width: 390px;
   }
 `;
 
@@ -41,6 +41,6 @@ export const Separator = styled.div`
 
   background-color: #e2e2e2;
     @media (min-width: 1024px) {
- width: 20%;
+ width: 390px;
   }
 `;

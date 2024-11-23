@@ -17,7 +17,7 @@ export const FooterContainer = styled.footer`
 
       @media (min-width: 1024px) {
   margin-left: 39%;
-  width: 22%;
+  width: 400px;
 
   }
 `;
