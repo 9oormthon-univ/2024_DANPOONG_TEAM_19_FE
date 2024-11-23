@@ -34,20 +34,20 @@ export const ModalWrap = styled.div`
 
 export const ModalSpace = styled.div`
   width: 100vw;
-  height: 100vh; 
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000; 
+  z-index: 1000;
 `;
 
 export const ModalBackground = styled.div`
   position: fixed;
   width: 100vw;
-  height: 100vh; 
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.25);
   top: 0;
   left: 0;
@@ -69,7 +69,7 @@ export const ModalTitle = styled.div`
 
 export const ModalText = styled.div`
   font-size: 18px;
-  font-weight: bold;
+  font-family: EliceDigitalBaeum_Bold;
   text-align: center;
   margin-top: 40px;
   color: #000000;
@@ -91,7 +91,7 @@ export const CloseBtn = styled.div`
   background-color: #ee8814;
 
   font-size: 15px;
-  font-weight: 600;
+  font-family: EliceDigitalBaeum_Bold;
   text-align: center;
 
   display: flex;

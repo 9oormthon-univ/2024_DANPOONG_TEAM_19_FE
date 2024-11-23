@@ -79,7 +79,7 @@ export const CloseBtn = styled.div`
   background-color: #ee8814;
 
   font-size: 16px;
-  font-weight: bold;
+  font-family: EliceDigitalBaeum_Bold;
   text-align: center;
 
   display: flex;

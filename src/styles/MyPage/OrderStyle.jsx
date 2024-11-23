@@ -18,6 +18,7 @@ export const ProductTitle = styled.div`
   color: #000000;
   margin-left: 20px;
   width: 167px;
+  font-family: EliceDigitalBaeum_Bold;
 `;
 
 export const Container = styled.div`
@@ -40,7 +41,7 @@ export const ListTitle = styled.div`
   height: 20px;
   width: 364px;
   font-size: 14px;
-  font-weight: bold;
+  font-family: EliceDigitalBaeum_Bold;
   color: #000000;
   display: flex;
   margin-bottom: 20px;
@@ -95,6 +96,7 @@ export const ListText = styled.div`
   font-size: 12.06px;
   color: #000000;
   margin-left: 11.3px;
+  font-family: EliceDigitalBaeum_Regular;
 `;
 
 export const ListMore = styled.img`

@@ -34,5 +34,5 @@ export const MenuItemWrapper = styled.div`
 export const MenuText = styled.span`
   font-size: 12px;
   color: ${(props) => (props.active ? "#EE8814" : "#777777")};
-  font-weight: ${(props) => (props.active ? "bold" : "normal")};
+  font-family: ${(props) => (props.active ? "EliceDigitalBaeum_Bold" : "EliceDigitalBaeum_Regular")};
 `;

@@ -9,7 +9,7 @@ body {
   margin: 0;
   overflow-x: hidden;
   min-height: 100vh;
-  
+
   background-color: #ffffff;
 
   @supports (-webkit-touch-callout: none) {
@@ -24,4 +24,19 @@ a:visited {
 
 p {
   margin: 0;
+}
+
+@font-face {
+  font-family: "EliceDigitalBaeum_Bold";
+  src: url("../src/assets/fonts/EliceDigitalBaeum_Bold.ttf");
+}
+
+@font-face {
+  font-family: "EliceDigitalBaeum_Regular";
+  src: url("../src/assets/fonts/EliceDigitalBaeum_Regular.ttf");
+}
+
+@font-face {
+  font-family: "Number";
+  src: url("../src/assets/fonts/AnekDevanagari-VariableFont_wdth,wght.ttf");
 }

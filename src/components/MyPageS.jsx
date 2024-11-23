@@ -85,7 +85,10 @@ function MyPageS() {
               />
             )}
           </MS.ListText>
-          <MS.LsitPrice>{item.price.toLocaleString()}원</MS.LsitPrice>
+          <MS.LsitPrice>
+            {item.price.toLocaleString()}
+            <div style={{ fontFamily: "EliceDigitalBaeum_Bold", fontSize: "20px" }}>원</div>
+          </MS.LsitPrice>
           <MS.ListButton>
             <MS.Button onClick={() => openModalD(item.productId)}>삭제</MS.Button>
             {isModalOpenD && selectedProductId === item.productId && (

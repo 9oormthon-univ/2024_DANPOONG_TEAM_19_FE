@@ -43,5 +43,6 @@ export const ListTitle = styled.div`
   width: 90%;
   font-weight: bold;
   font-size: 14px;
+  font-family: EliceDigitalBaeum_Bold;
   color: #000000;
 `;

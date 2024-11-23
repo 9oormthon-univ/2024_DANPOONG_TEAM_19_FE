@@ -49,6 +49,7 @@ export const ListText = styled.div`
   font-size: 12.06px;
   color: #000000;
   margin-left: 11.3px;
+  font-family: EliceDigitalBaeum_Regular;
 `;
 
 export const ListMore = styled.img`

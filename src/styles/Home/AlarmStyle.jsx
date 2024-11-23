@@ -23,4 +23,5 @@ export const AlarmText = styled.div`
   color: #000000;
   word-wrap: break-word;
   line-height: 1.5;
+  font-family: EliceDigitalBaeum_Regular;
 `;

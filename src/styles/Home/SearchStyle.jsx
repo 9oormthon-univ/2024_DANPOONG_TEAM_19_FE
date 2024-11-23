@@ -16,9 +16,9 @@ export const SearchContainer = styled.div`s
 
 export const SearchTitle = styled.div`
   font-size: 14px;
-  font-weight: bold;
   color: #000000;
   display: flex;
+  font-family: EliceDigitalBaeum_Bold;
 `;
 
 export const SearchContent = styled.ul``;
@@ -42,6 +42,7 @@ export const SearchText = styled.div`
   font-size: 14px;
   color: #000000;
   width: 300px;
+  font-family: EliceDigitalBaeum_Regular;
 `;
 
 export const SearchDelete = styled.img`
