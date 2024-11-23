@@ -50,11 +50,15 @@ function Search() {
 
   return (
     <C.Page>
+      <SearchHeader inputValue={inputValue} setInputValue={setInputValue} onSearch={handleSearch} />
       <C.Center>
         <C.PageSpace>
-          <SearchHeader inputValue={inputValue} setInputValue={setInputValue} onSearch={handleSearch} />
           <S.Search>
-            <S.SearchTitle>최근 검색</S.SearchTitle>
+            <S.SearchContainer>
+              {" "}
+              <S.SearchTitle>최근 검색</S.SearchTitle>
+            </S.SearchContainer>
+
             <S.SearchContent>
               {searchHistory.map((item, index) => (
                 <S.SearchItem key={index}>
@@ -64,9 +68,9 @@ function Search() {
               ))}
             </S.SearchContent>
           </S.Search>
-          <Footer />
         </C.PageSpace>
       </C.Center>
+      <Footer />
     </C.Page>
   );
 }

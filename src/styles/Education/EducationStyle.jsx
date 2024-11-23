@@ -2,7 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  padding: 100px 18px 0 18px;
+  justify-content: center;
+  margin: 100px 18px 0 18px;
+`;
+
+export const Button = styled.div`
+  display: flex;
+  margin-left: -160px;
+  flex-direction: row;
 `;
 
 export const Btn = styled.button`

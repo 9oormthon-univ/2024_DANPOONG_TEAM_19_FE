@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const FooterContainer = styled.footer`
   position: fixed;
   bottom: 0;
-  left: 0;
-  width: 100%;
+
+  width: 404px;
   height: 80px;
   display: flex;
   justify-content: space-around;
@@ -14,11 +14,6 @@ export const FooterContainer = styled.footer`
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
   z-index: 998;
   height: 80px;
-
-  @media (min-width: 1024px) {
-    margin-left: 39%;
-    width: 400px;
-  }
 `;
 
 export const MenuItem = styled.img`

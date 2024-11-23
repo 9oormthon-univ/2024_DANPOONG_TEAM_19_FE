@@ -39,9 +39,9 @@ function MyPage() {
 
   return (
     <C.Page>
+      <Back />
       <C.Center>
         <C.PageSpace>
-          <Back />
           <M.Profile>
             <M.ProfileImg src={ProfileImage} alt="Profile"></M.ProfileImg>
             <M.ProfileText>{userInfo}</M.ProfileText>
@@ -53,9 +53,9 @@ function MyPage() {
             </M.DivisionLine>
           </M.Division>
           <M.Content>{userType === "consumer" ? <MyPageB /> : <MyPageS />}</M.Content>
-          <Footer />
         </C.PageSpace>
       </C.Center>
+      <Footer />
     </C.Page>
   );
 }

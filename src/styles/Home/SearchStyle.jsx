@@ -8,13 +8,17 @@ export const Search = styled.div`
   margin-top: 100px;
 `;
 
+export const SearchContainer = styled.div`s
+  display: flex;
+  width: 364px;
+  margin: 30px;
+`;
+
 export const SearchTitle = styled.div`
   font-size: 14px;
   font-weight: bold;
   color: #000000;
   display: flex;
-  align-self: start;
-  margin: 30px 0 15px 26px;
 `;
 
 export const SearchContent = styled.ul``;

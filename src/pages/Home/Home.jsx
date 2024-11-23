@@ -4,12 +4,12 @@ import * as C from "../../styles/CommonStyle";
 import * as H from "../../styles/Home/HomeStyle";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import Upload from '../../assets/images/Home/upload.svg';
+import Upload from "../../assets/images/Home/upload.svg";
 import Back from "../../components/back";
-import useAllProducts from "../../hooks/Home/useAllProducts"; 
+import useAllProducts from "../../hooks/Home/useAllProducts";
 
 function Home() {
-  const { products, loading, error } = useAllProducts(); 
+  const { products, loading, error } = useAllProducts();
 
   return (
     <C.Page>
@@ -18,7 +18,9 @@ function Home() {
         <C.PageSpace>
           <H.GridContainer>
             {products.map((product) => (
-              <Link to={`/detail/${product.productId}`} key={product.productId}> {/* productId로 링크 */}
+              <Link to={`/detail/${product.productId}`} key={product.productId}>
+                {" "}
+                {/* productId로 링크 */}
                 <H.Box>
                   <H.Image src={product.imgUrl} alt={product.title} />
                   <H.Description>

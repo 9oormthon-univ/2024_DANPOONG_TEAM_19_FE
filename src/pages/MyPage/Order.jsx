@@ -67,9 +67,9 @@ function Order() {
 
   return (
     <C.Page>
+      <Back />
       <C.Center>
         <C.PageSpace>
-          <Back />
           {product && (
             <O.Product>
               <O.ProductImg src={product.images?.[0]?.imageUrl} alt="상품 이미지" />
@@ -101,9 +101,9 @@ function Order() {
               </O.ListItem>
             ))}
           </O.List>
-          <Footer />
         </C.PageSpace>
       </C.Center>
+      <Footer />
     </C.Page>
   );
 }
