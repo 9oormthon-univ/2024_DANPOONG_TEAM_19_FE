@@ -1,20 +1,65 @@
 import React, { useState } from "react";
 import * as MP from "../styles/Components/ModalProgressStyle";
 import Delete from "../assets/images/Common/delete.png";
-import Test from "../assets/images/Common/test.png";
+import ProfileImg from "../assets/images/Mypage/profile.png";
 
-const steps = ["구매요청", "구매수락", "입금확인", "제작중", "배송중", "배송완료"];
+// 상태 값에 따른 단계 매핑
+const statusMapping = {
+  ORDER_REQUEST: "구매요청",
+  PAYMENT_PENDING: "구매수락",
+  PAYMENT_COMPLETE: "입금확인",
+  IN_PRODUCTION: "제작중",
+  IN_DELIVERY: "배송중",
+  DELIVERY_COMPLETE: "배송완료",
+};
 
-const ModalProgressS = ({ onClose, isModalVisibleP }) => {
+const steps = Object.values(statusMapping); // 단계 이름 리스트 생성
+
+const ModalProgressS = ({ onClose, isModalVisibleP, purchaseId }) => {
   const [activeStep, setActiveStep] = useState(0);
+  const [purchaseData, setPurchaseData] = useState(null);
 
-  const handleStepClick = (index) => {
-    setActiveStep(index);
-  };
+  useEffect(() => {
+    const fetchPurchaseData = async () => {
+      if (!purchaseId) return;
+
+      try {
+        // API 호출
+        const response = await axiosInstance.get(`/api/core/mypage/${purchaseId}`);
+        const data = response.data;
+
+        console.log("API 응답 데이터:", data);
+        setPurchaseData(data);
+
+        // 상태 값 매핑 및 activeStep 계산
+        const stepLabel = statusMapping[data.status]; // 상태 값을 단계 이름으로 변환
+        console.log("data.status 값:", data.status);
+        console.log("변환된 단계 이름:", stepLabel);
+
+        if (stepLabel) {
+          const statusIndex = steps.indexOf(stepLabel); // `steps`에서 인덱스 찾기
+          console.log("단계 인덱스:", statusIndex);
+
+          if (statusIndex >= 0) {
+            setActiveStep(statusIndex); // 활성 스텝 업데이트
+          }
+        } else {
+          console.error(`'${data.status}'에 해당하는 단계가 없습니다.`);
+        }
+      } catch (error) {
+        console.error("구매 정보 가져오기 실패:", error.response?.data || error.message);
+      }
+    };
+
+    fetchPurchaseData();
+  }, [purchaseId]);
 
   const progressWidths = [10, 26, 42, 58, 76, 100];
-
   const progressWidth = `${progressWidths[activeStep]}%`;
+
+  if (!purchaseData) {
+    return null; // 데이터가 로드되지 않으면 렌더링하지 않음
+  }
 
   return (
     <>
@@ -24,7 +69,7 @@ const ModalProgressS = ({ onClose, isModalVisibleP }) => {
           <MP.ModalContent>
             <MP.ModalHeader>
               <MP.Profile>
-                <MP.ProfileImg src={Test} alt="test"></MP.ProfileImg>
+                <MP.ProfileImg src={ProfileImg} alt="profile"></MP.ProfileImg>
                 <MP.ProfileName>김옥순</MP.ProfileName>
               </MP.Profile>
               <MP.Close src={Delete} alt="delete" onClick={onClose}></MP.Close>

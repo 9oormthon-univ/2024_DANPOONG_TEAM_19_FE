@@ -4,7 +4,7 @@ import { axiosInstance } from "../../axios/axios_instance";
 import * as C from "../../styles/CommonStyle";
 import * as O from "../../styles/MyPage/OrderStyle";
 import Plus from "../../assets/images/Mypage/plus.png";
-import Test from "../../assets/images/Common/test.png";
+import ProfileImg from "../../assets/images/Mypage/profile.png";
 import Back from "../../components/back";
 import Footer from "../../components/Footer";
 
@@ -18,6 +18,7 @@ function Order() {
     try {
       const response = await axiosInstance.get(`/api/core/mypage/allpurchase/seller/${productId}`);
       setBuyers(response.data); // 주문자 목록 설정
+      console.log(response.data);
     } catch (error) {
       console.error("주문자 데이터를 가져오는 중 오류가 발생했습니다:", error);
     }
@@ -27,8 +28,8 @@ function Order() {
   const getProductDetails = async () => {
     try {
       const response = await axiosInstance.get(`/api/core/mypage/allproduct`);
-      const productData = response.data.find((item) => item.productId === parseInt(productId)); // 동일한 productId의 상품 찾기
-      setProduct(productData); // 선택된 상품 정보 설정
+      const productData = response.data.find((item) => item.productId === parseInt(productId));
+      setProduct(productData);
     } catch (error) {
       console.error("상품 데이터를 가져오는 중 오류가 발생했습니다:", error);
     }
@@ -55,12 +56,12 @@ function Order() {
             <O.ListTitle>주문자 목록</O.ListTitle>
           </O.Container>
           <O.List>
-            {buyers.map((buyer, index) => (
-              <O.ListItem key={index}>
+            {buyers.map((buyer) => (
+              <O.ListItem key={buyer.consumerId}>
                 <O.ListContent>
                   <O.ListContainer>
-                    <O.ListImg src={buyer.profileImage || "/default-profile.png"} alt="profile" />
-                    <O.ListText>{buyer.consumerId || "Unknown User"}</O.ListText>
+                    <O.ListImg src={ProfileImg} alt="profile" />
+                    <O.ListText>{buyer.consumerId}</O.ListText>
                   </O.ListContainer>
                   <O.ListMore src={Plus} onClick={() => alert(`관리 기능: ${buyer.consumerId}`)} />
                 </O.ListContent>

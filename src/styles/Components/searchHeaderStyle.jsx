@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const HeaderContainer = styled.header`
   position: absolute;
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
-  max-width: 100%; 
+  max-width: 100%;
   width: 100%;
-  padding: 0 16px; 
-  box-sizing: border-box; 
+  padding: 0 16px;
+  box-sizing: border-box;
   top: 5%;
 `;
 
@@ -19,19 +19,19 @@ export const Logo = styled.img`
 
 export const RightIcons = styled.div`
   display: flex;
-  gap: 23px; 
+  gap: 23px;
 `;
 
 export const Icon = styled.img`
   width: 24px;
   height: 24px;
-  cursor: pointer; 
+  cursor: pointer;
 `;
 
 export const Separator = styled.div`
   position: absolute;
-  top:11%;
-  width: 95%; 
+  top: 11%;
+  width: 95%;
   height: 1px;
   background-color: #e2e2e2;
 `;
@@ -39,12 +39,12 @@ export const Separator = styled.div`
 export const SearchContainer = styled.div`
   display: flex;
   align-items: center;
-  background-color: #ffffff; 
+  background-color: #ffffff;
   border-radius: 20px;
   padding: 12px 20px;
   gap: 8px;
-  width: 80%; 
-  border: 1px solid #000;
+  width: 80%;
+  border: 1px solid #b2b2b2;
 `;
 
 export const SearchInput = styled.input`

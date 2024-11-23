@@ -10,25 +10,32 @@ function MypageB() {
   const [selectedPurchaseId, setSelectedPurchaseId] = useState(null);
   const [isModalOpenP, setIsModalOpenP] = useState(false);
   const [isModalVisibleP, setIsModalVisibleP] = useState(false);
+  const [selectedPurchaseTitle, setSelectedPurchaseTitle] = useState(null);
 
-  const openModalP = (purchaseId) => {
+  const openModalP = (purchaseId, title) => {
+    console.log("선택된 purchaseId:", purchaseId);
     setSelectedPurchaseId(purchaseId);
+    setSelectedPurchaseTitle(title);
     setIsModalOpenP(true);
     setIsModalVisibleP(true);
   };
+
+  // 모달 닫기
   const closeModalP = () => {
     setIsModalVisibleP(false);
     setTimeout(() => {
       setIsModalOpenP(false);
-      setSelectedPurchaseId(null);
+      setSelectedPurchaseId(null); // 초기화
+      setSelectedPurchaseTitle(null);
     }, 400);
   };
 
+  // 데이터 가져오기
   const getItems = async () => {
     try {
       const response = await axiosInstance.get("/api/core/mypage/allpurchase/consumer");
       setItems(response.data);
-      console.log(response.data);
+      console.log("구매 데이터:", response.data);
     } catch (error) {
       console.error("데이터를 가져오는 중 오류가 발생했습니다:", error);
     }
@@ -41,19 +48,25 @@ function MypageB() {
   return (
     <MB.List>
       {items.map((item) => (
-        <MB.ListItem key={item.id}>
+        <MB.ListItem key={item.purchaseId}>
           <MB.ListContent>
             <MB.ListContainer>
-              <MB.ListImg src={item.images?.[0]?.imageUrl}></MB.ListImg>
+              <MB.ListImg src={item.images?.[0]?.imageUrl || "/default-image.png"} alt="상품 이미지" />
               <MB.ListText>{item.title}</MB.ListText>
             </MB.ListContainer>
-            <MB.ListMore src={Plus} onClick={() => openModalP(item.purchases?.[0]?.purchaseId)}></MB.ListMore>
+            {/* 구매 ID를 기반으로 모달 열기 */}
+            <MB.ListMore src={Plus} onClick={() => openModalP(item.purchaseId, item.title)} alt="모달 열기" />
+            {isModalOpenP && selectedPurchaseId === item.purchaseId && (
+              <ModalProgressB
+                onClose={closeModalP}
+                isModalVisibleP={isModalVisibleP}
+                purchaseId={selectedPurchaseId}
+                title={selectedPurchaseTitle}
+              />
+            )}
           </MB.ListContent>
         </MB.ListItem>
       ))}
-      {isModalOpenP && (
-        <ModalProgressB onClose={closeModalP} isModalVisibleP={isModalVisibleP} purchaseId={selectedPurchaseId} />
-      )}
     </MB.List>
   );
 }

@@ -5,6 +5,9 @@ export const List = styled.ul`
   padding: 0;
   margin: 0;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ListItem = styled.li`

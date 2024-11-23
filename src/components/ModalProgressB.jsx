@@ -1,42 +1,64 @@
 import React, { useState, useEffect } from "react";
 import * as MP from "../styles/Components/ModalProgressStyle";
 import Delete from "../assets/images/Common/delete.png";
-import axios from "axios";
+import { axiosInstance } from "../axios/axios_instance";
 
-const steps = ["구매요청", "구매수락", "입금확인", "제작중", "배송중", "배송완료"];
+// 상태 값에 따른 단계 매핑
+const statusMapping = {
+  ORDER_REQUEST: "구매요청",
+  PAYMENT_PENDING: "구매수락",
+  PAYMENT_COMPLETE: "입금확인",
+  IN_PRODUCTION: "제작중",
+  IN_DELIVERY: "배송중",
+  DELIVERY_COMPLETE: "배송완료",
+};
 
-const ModalProgressB = ({ onClose, isModalVisibleP, purchaseId }) => {
+const steps = Object.values(statusMapping); // 단계 이름 리스트 생성
+
+const ModalProgressB = ({ onClose, isModalVisibleP, purchaseId, title }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [purchaseData, setPurchaseData] = useState(null);
-
-  const API_KEY = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
     const fetchPurchaseData = async () => {
       if (!purchaseId) return;
+
       try {
-        const url = `${API_KEY}/mypage/${purchaseId}`;
-        const response = await axios.get(url);
+        // API 호출
+        const response = await axiosInstance.get(`/api/core/mypage/${purchaseId}`);
         const data = response.data;
+
+        console.log("API 응답 데이터:", data);
         setPurchaseData(data);
 
-        const statusIndex = steps.findIndex((step) => step === data.status);
-        if (statusIndex >= 0) {
-          setActiveStep(statusIndex);
+        // 상태 값 매핑 및 activeStep 계산
+        const stepLabel = statusMapping[data.status]; // 상태 값을 단계 이름으로 변환
+        console.log("data.status 값:", data.status);
+        console.log("변환된 단계 이름:", stepLabel);
+
+        if (stepLabel) {
+          const statusIndex = steps.indexOf(stepLabel); // `steps`에서 인덱스 찾기
+          console.log("단계 인덱스:", statusIndex);
+
+          if (statusIndex >= 0) {
+            setActiveStep(statusIndex); // 활성 스텝 업데이트
+          }
+        } else {
+          console.error(`'${data.status}'에 해당하는 단계가 없습니다.`);
         }
       } catch (error) {
-        console.error("구매 정보 가져오기 실패:", error);
+        console.error("구매 정보 가져오기 실패:", error.response?.data || error.message);
       }
     };
 
     fetchPurchaseData();
-  }, [purchaseId, API_KEY]);
+  }, [purchaseId]);
 
   const progressWidths = [10, 26, 42, 58, 76, 100];
   const progressWidth = `${progressWidths[activeStep]}%`;
 
   if (!purchaseData) {
-    return null;
+    return null; // 데이터가 로드되지 않으면 렌더링하지 않음
   }
 
   return (
@@ -47,8 +69,8 @@ const ModalProgressB = ({ onClose, isModalVisibleP, purchaseId }) => {
           <MP.ModalContent>
             <MP.ModalHeader>
               <MP.Profile>
-                <MP.ProfileImg src={purchaseData.productImage || "상품 이미지"} />
-                <MP.ProfileName>{purchaseData.productTitle || "상품 이름"}</MP.ProfileName>
+                <MP.ProfileImg src={purchaseData.productImage} />
+                <MP.ProfileName>{title}</MP.ProfileName>
               </MP.Profile>
               <MP.Close src={Delete} alt="delete" onClick={onClose}></MP.Close>
             </MP.ModalHeader>
