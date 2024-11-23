@@ -46,9 +46,3 @@ export const ListTitle = styled.div`
   font-size: 14px;
   color: #000000;
 `;
-
-export const ListMore = styled.img`
-  cursor: pointer;
-  width: 3px;
-  height: 13px;
-`;

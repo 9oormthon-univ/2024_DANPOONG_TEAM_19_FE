@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosInstance } from "../axios/axios_instance";
 import * as V from "../styles/Components/VideoStyle";
-import More from "../assets/images/Common/more.png";
 
 const Video = ({ query }) => {
   const [items, setItems] = useState([]);
@@ -45,7 +44,6 @@ const Video = ({ query }) => {
           <V.ListImg src={item.thumbnail || "/default-thumbnail.png"} alt="미리보기" />
           <V.ListText>
             <V.ListTitle>{item.title}</V.ListTitle>
-            <V.ListMore src={More} alt="more" />
           </V.ListText>
         </V.ListItem>
       ))}

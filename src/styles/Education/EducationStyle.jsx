@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-
   display: flex;
   padding: 100px 18px 0 18px;
 `;
 
 export const Btn = styled.button`
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,6 +32,6 @@ export const Content = styled.div`
   margin-top: 24px;
   display: flex;
   justify-content: center;
-  padding: 0 10%;
+  padding: 0 18px;
   margin-bottom: 100px;
 `;

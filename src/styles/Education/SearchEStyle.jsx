@@ -17,9 +17,7 @@ export const SearchTitle = styled.div`
   margin: 30px 0 15px 26px;
 `;
 
-export const SearchContent = styled.ul`
-  display: flex;
-`;
+export const SearchContent = styled.ul``;
 
 export const SearchItem = styled.li`
   display: flex;
