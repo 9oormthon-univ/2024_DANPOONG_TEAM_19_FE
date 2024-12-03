@@ -38,7 +38,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   gap: 36px;
-  padding-top:14%;
+  padding-top:5%;
   padding-bottom: 25%;
 `;
 
@@ -56,7 +56,7 @@ export const Line = styled.hr`
   background-color: #ddd;
   border: none;
   margin: 0 auto;
-  margin-bottom: -5%;
+
 `;
 
 export const SliderWrapper = styled.div`
